@@ -23,23 +23,23 @@ const Carousel = () => {
           aria-label="Slide 3"
         ></button>
       </div>
-      <div class="carousel-inner">
+      <div class="carousel-inner main-carousel-inner">
         <div class="carousel-item main-carousel-item active">
-          <img src="https://blenderartists.org/uploads/default/original/4X/c/6/8/c6844df952fc962e2d405570fc260a7a75efdc52.jpeg" class="d-block w-100" alt="..." />
+          <img src={`${process.env.PUBLIC_URL}/images/slide1.jpg`} class="d-block img-carousel" alt="..." />
           <div class="carousel-caption main-carousel-caption d-none d-md-block">
             <h5>First slide label</h5>
             <p>Some representative placeholder content for the first slide.</p>
           </div>
         </div>
         <div class="carousel-item main-carousel-item">
-          <img src="https://blenderartists.org/uploads/default/original/4X/2/5/e/25eae5af130ad4a59918d78887856e38d8d2dbcd.jpeg" class="d-block w-100" alt="..." />
+          <img src={`${process.env.PUBLIC_URL}/images/slide2.jpg`} class="d-block img-carousel" alt="..." />
           <div class="carousel-caption main-carousel-caption d-none d-md-block">
             <h5>Second slide label</h5>
             <p>Some representative placeholder content for the second slide.</p>
           </div>
         </div>
         <div class="carousel-item main-carousel-item">
-          <img src="https://blenderartists.org/uploads/default/original/4X/9/3/0/930425e0895762b7ead9a2c8354bd0166b5c55eb.jpg" class="d-block w-100" alt="..." />
+          <img src={`${process.env.PUBLIC_URL}/images/slide3.jpg`} class="d-block img-carousel" alt="..." />
           <div class="carousel-caption main-carousel-caption d-none d-md-block">
             <h5>Third slide label</h5>
             <p>Some representative placeholder content for the third slide.</p>

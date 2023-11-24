@@ -32,11 +32,11 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="md" fixed="">
+      <Navbar className="top-nav" bg="dark" variant="dark" expand="md" fixed="">
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <img src={logo} alt="logo" width={60} />
+              <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="logo" width={100} />
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
@@ -50,9 +50,10 @@ const Header = () => {
                       bg="success"
                       style={{
                         position: "absolute",
-                        padding: "0px 2px",
+                        padding: "2px 5px",
                         borderRadius: "100%",
                         top: "5px",
+                        left: "-4px",
                       }}
                     >
                       {cartItems.reduce(
@@ -101,10 +102,60 @@ const Header = () => {
       </Navbar>
       <div className="nav-menu">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav navbar-menu">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="womenDropdown" role="button" data-toggle="dropdown">
+        <a class="nav-link dropdown-toggle nav-menu-link" href="#" id="womenDropdown" role="button" data-toggle="dropdown">
+          Men
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/women/item1">Item 1</a>
+          <a class="dropdown-item" href="/women/item2">Item 2</a>
+          <a class="dropdown-item" href="/women/item3">Item 3</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle nav-menu-link" href="#" id="womenDropdown" role="button" data-toggle="dropdown">
           Women
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/women/item1">Item 1</a>
+          <a class="dropdown-item" href="/women/item2">Item 2</a>
+          <a class="dropdown-item" href="/women/item3">Item 3</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle nav-menu-link" href="#" id="womenDropdown" role="button" data-toggle="dropdown">
+        Packs & bags
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/women/item1">Item 1</a>
+          <a class="dropdown-item" href="/women/item2">Item 2</a>
+          <a class="dropdown-item" href="/women/item3">Item 3</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle nav-menu-link" href="#" id="womenDropdown" role="button" data-toggle="dropdown">
+        Tents
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/women/item1">Item 1</a>
+          <a class="dropdown-item" href="/women/item2">Item 2</a>
+          <a class="dropdown-item" href="/women/item3">Item 3</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle nav-menu-link" href="#" id="womenDropdown" role="button" data-toggle="dropdown">
+        Equipment
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/women/item1">Item 1</a>
+          <a class="dropdown-item" href="/women/item2">Item 2</a>
+          <a class="dropdown-item" href="/women/item3">Item 3</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle nav-menu-link" href="#" id="womenDropdown" role="button" data-toggle="dropdown">
+        Accessories
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="/women/item1">Item 1</a>

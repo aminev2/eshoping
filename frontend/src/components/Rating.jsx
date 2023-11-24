@@ -11,12 +11,12 @@ const Rating = ({ ratingValue, numReviews }) => {
 
     // I- Full stars
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<FaStar color="black" key={i} />);
+      stars.push(<FaStar color="#FF9800" key={i} />);
     }
 
     // II- Half star
     if (hasHalfStar) {
-      stars.push(<FaStarHalfAlt color="black" key="half" />);
+      stars.push(<FaStarHalfAlt color="#FF9800" key="half" />);
     }
 
     // Calculate the number of empty stars needed
@@ -24,7 +24,7 @@ const Rating = ({ ratingValue, numReviews }) => {
     // III- Empty stars
     // Add the necessary empty stars to the Stars array
     for (let i = 0; i < emptyStars; i++) {
-      stars.push(<FaRegStar color="black" key={`empty_${i}`} />);
+      stars.push(<FaRegStar color="#FF9800" key={`empty_${i}`} />);
     }
 
     return stars;

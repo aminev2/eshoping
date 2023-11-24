@@ -27,7 +27,7 @@ const HomeScreen = () => {
             {products.slice(0, 4).map((product) => {
               return (
                 <Col key={product._id} sm={12} md={4} lg={3} lx={3}>
-                  <Product product={product}></Product>
+                  <Product className="product" product={product}></Product>
                 </Col>
               );
             })}
