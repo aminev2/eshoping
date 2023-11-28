@@ -1,6 +1,7 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
+
 //!@desc Login user / get Token
 //?@route POST /api/users/login
 //?@access Public
@@ -28,7 +29,7 @@ const loginUser = asyncHandler(async (req, res) => {
 //?@access Public
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, isAdmin } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -42,6 +43,7 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password,
+    isAdmin,  
   });
 
   if (user) {
@@ -99,7 +101,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     user.name = name || user.name;
     user.email = email || user.email;
+
     //! password is hash so we can't change it only if user wants to change it
+
     if (password) {
       user.password = password;
     }
@@ -121,7 +125,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 //?@access Private/Admin
 
 const getUsers = asyncHandler(async (req, res) => {
-  res.send("Get All users");
+  const users = await User.find({});
+  res.status(200).send(users);
 });
 
 //!@desc Get user By ID

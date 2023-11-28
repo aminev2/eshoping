@@ -18,13 +18,13 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ShippingScreen from "./screens/ShippingScreen";
 import PrivateRoute from "./components/PrivateRoute";
-import PaymentScreen from "./components/PaymentScreen";
-
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import PaymentScreen from "./screens/PaymentScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import OrderScreen from "./screens/OrderScreen";
+  
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/index.css";
-
-
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -48,16 +48,19 @@ const router = createBrowserRouter(
       {/* Private Routes */}
       <Route path="" element={<PrivateRoute></PrivateRoute>}>
         <Route
-          index={true}
           path="/shipping"
           element={<ShippingScreen></ShippingScreen>}
         ></Route>
 
         <Route
-          index={true}
           path="/payment"
           element={<PaymentScreen></PaymentScreen>}
         ></Route>
+        <Route
+          path="/place-order"
+          element={<PlaceOrderScreen></PlaceOrderScreen>}
+        ></Route>
+        <Route path="/orders/:id" element={<OrderScreen />}></Route>
       </Route>
     </Route>
   )

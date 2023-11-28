@@ -7,10 +7,12 @@ const reviewSchema = new Schema(
       required: true,
       ref: "User",
     },
+
     name: {
       type: String,
       required: true,
     },
+
     rating: {
       type: Number,
       required: true,
@@ -31,23 +33,30 @@ const productSchema = new Schema(
       required: true,
       ref: "User",
     },
+
     name: {
       type: String,
       required: true,
     },
+
     image: {
       type: String,
       required: true,
     },
+
     price: {
       type: Number,
       require: true,
     },
+
     brand: {
       type: String,
       required: true,
     },
 
+    size: {
+      type: String,
+    },
     category: {
       type: String,
       required: true,
@@ -57,6 +66,7 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
+
     reviews: [reviewSchema],
 
     rating: {

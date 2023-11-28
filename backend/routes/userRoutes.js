@@ -12,7 +12,8 @@ import {
   deleteUser,
 } from "../controllers/userController.js";
 import { admin, protect } from "../middlewares/authMiddleware.js";
-router.route("/register").post(registerUser).get(getUsers);
+router.route("/register").post(registerUser);
+router.route("/").get(getUsers);
 router.post("/login", loginUser);
 router.post("/logout", protect, logoutUser);
 router

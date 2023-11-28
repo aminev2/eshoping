@@ -12,26 +12,43 @@ import {
 } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa";
 import Message from "../components/Message";
-import { addToCart, removeFromCart } from "../slices/cartSlice";
+import { addToCart, removeFromCart, selectCart } from "../slices/cartSlice";
 
+/**
+ * React component representing the shopping cart screen.
+ * Handles the display of cart items, their quantities, and provides options
+ * to add, remove items, and proceed to checkout.
+ */
 const CartScreen = () => {
+  // React Router hook for navigation
   const navigate = useNavigate();
+
+  // Redux hooks for accessing state and dispatching actions
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector(selectCart);
   const { cartItems } = cart;
+
+  // Handles the addition of a product to the shopping cart.
 
   const addToCartHandler = async (product, qty) => {
     dispatch(addToCart({ ...product, qty }));
   };
 
+  // Handles the removal of a product from the shopping cart.
+
   const removeFromCartHandler = async (productId) => {
     dispatch(removeFromCart(productId));
   };
 
+  /**
+   * Navigates to the login screen if the user is not logged in,
+   * otherwise, redirects to the shipping screen for checkout.
+   */
   const checkoutHandler = () => {
-    //? check if login then proceed to shipping
+    // Check if the user is logged in, then proceed to the shipping screen
     navigate("/login?redirect=/shipping");
   };
+
   return (
     <div>
       <Row>
@@ -58,7 +75,7 @@ const CartScreen = () => {
                         ></Image>
                       </Col>
                       <Col md={4}>
-                        <Link to={`product/${item._id}`}>{item.name}</Link>
+                        <Link to={`/products/${item._id}`}>{item.name}</Link>
                       </Col>
 
                       <Col md={2}>$ {item.price}</Col>
