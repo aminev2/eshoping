@@ -33,7 +33,7 @@ const CartScreen = () => {
     navigate("/login?redirect=/shipping");
   };
   return (
-    <div>
+    <div className="container">
       <Row>
         <Col md={8}>
           <h1 style={{ marginBottom: "20px" }}>Shopping Cart</h1>

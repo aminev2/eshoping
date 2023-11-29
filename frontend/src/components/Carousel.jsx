@@ -24,22 +24,19 @@ const Carousel = () => {
         ></button>
       </div>
       <div class="carousel-inner main-carousel-inner">
-        <div class="carousel-item main-carousel-item active">
-          <img src={`${process.env.PUBLIC_URL}/images/slide1.jpg`} class="d-block img-carousel" alt="..." />
+        <div class="slides slide1 carousel-item main-carousel-item active">
           <div class="carousel-caption main-carousel-caption d-none d-md-block">
             <h5>First slide label</h5>
             <p>Some representative placeholder content for the first slide.</p>
           </div>
         </div>
-        <div class="carousel-item main-carousel-item">
-          <img src={`${process.env.PUBLIC_URL}/images/slide2.jpg`} class="d-block img-carousel" alt="..." />
+        <div class="slides slide2 carousel-item main-carousel-item">
           <div class="carousel-caption main-carousel-caption d-none d-md-block">
             <h5>Second slide label</h5>
             <p>Some representative placeholder content for the second slide.</p>
           </div>
         </div>
-        <div class="carousel-item main-carousel-item">
-          <img src={`${process.env.PUBLIC_URL}/images/slide3.jpg`} class="d-block img-carousel" alt="..." />
+        <div class="slides slide3 carousel-item main-carousel-item">
           <div class="carousel-caption main-carousel-caption d-none d-md-block">
             <h5>Third slide label</h5>
             <p>Some representative placeholder content for the third slide.</p>

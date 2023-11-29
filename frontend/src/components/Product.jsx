@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Rating from "../components/Rating";
 const Product = ({ product }) => {
   return (
-    <Card className="my-3 p-2 rounded">
+    <Card className="product my-3 p-2 rounded">
       <Link to={`/products/${product._id}`}>
         <Card.Img src={product.image} variant="bottom"></Card.Img>
       </Link>

@@ -41,6 +41,20 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-n av">
+            <Nav className="me-auto">
+              <LinkContainer to="/">
+                <Nav.Link>Home</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/products">
+                <Nav.Link>Shop</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/contact">
+                <Nav.Link>Contact</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/about">
+                <Nav.Link>About</Nav.Link>
+              </LinkContainer>
+            </Nav>
             <Nav className="ms-auto">
               <LinkContainer to="/cart" style={{ position: "relative" }}>
                 <Nav.Link>
@@ -98,7 +112,11 @@ const Header = () => {
               <Dropdown.Item>Login</Dropdown.Item>
             </LinkContainer>
           </DropdownButton> */}
+                  <div className="cart">
+          <h3>test</h3>
+        </div>
         </Container>
+
       </Navbar>
       <div className="nav-menu">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">

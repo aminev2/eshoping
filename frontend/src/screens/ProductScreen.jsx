@@ -34,7 +34,7 @@ const ProductScreen = () => {
     navigate("/cart");
   };
   return (
-    <Fragment>
+    <div className="container">
       <Link className="btn btn-light my-3" to={"/"}>
         Go back
       </Link>
@@ -118,7 +118,7 @@ const ProductScreen = () => {
           </Col>
         </Row>
       )}
-    </Fragment>
+    </div>
   );
 };
 

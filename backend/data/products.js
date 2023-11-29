@@ -12,7 +12,7 @@ const products = [
     numReviews: 12,
   },
   {
-    name: "iPhone 11 Pro 256GB Memory",
+    name: "EVERQUEST TEXAPORE MID M",
     image: "/images/phone.jpg",
     description:
       "Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
@@ -24,7 +24,7 @@ const products = [
     numReviews: 8,
   },
   {
-    name: "Cannon EOS 80D DSLR Camera",
+    name: "Morobbia Fork Bag",
     image: "/images/camera.jpg",
     description:
       "Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design",
@@ -36,7 +36,7 @@ const products = [
     numReviews: 12,
   },
   {
-    name: "Sony Playstation 4 Pro White Version",
+    name: "FROZEN PALACE JACKET W",
     image: "/images/playstation.jpg",
     description:
       "The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music",
@@ -48,7 +48,7 @@ const products = [
     numReviews: 12,
   },
   {
-    name: "Logitech G-Series Gaming Mouse",
+    name: "Base Camp Dome",
     image: "/images/mouse.jpg",
     description:
       "Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience",
