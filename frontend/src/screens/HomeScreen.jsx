@@ -7,6 +7,7 @@ import Message from "../components/Message";
 import Carousel from "../components/Carousel";
 import Categories from "../components/Categories";
 import Testimonial from "../components/Testimonial";
+import Value from "../components/Value";
 
 const HomeScreen = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
@@ -40,6 +41,7 @@ const HomeScreen = () => {
         </div>
       </div>
       <Testimonial />
+      <Value />
       <button className="top"
         onClick={() => window.scrollTo(0, 0)}
         style={{
