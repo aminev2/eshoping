@@ -9,8 +9,8 @@ const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({});
   return res.status(200).json(products);
 });
-
-// @desc Fetch  a product
+  
+//! @desc Fetch  a product
 // @route GET /api/products/:id
 // @access Public
 
@@ -23,4 +23,18 @@ const getProductById = asyncHandler(async (req, res) => {
   }
   return res.status(200).send(product);
 });
+
+
+//! @desc Fetch  a product
+// @route GET /api/products/:id
+// @access Private/Admin
+  
+
+
+
+
+
+
+
+
 export { getProducts, getProductById };

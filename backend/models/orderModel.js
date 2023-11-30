@@ -7,6 +7,7 @@ const orderSchema = new Schema(
       required: true,
       ref: "User",
     },
+
     //? [] means an Array of items
     orderItems: [
       {
