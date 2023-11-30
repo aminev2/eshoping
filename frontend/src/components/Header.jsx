@@ -56,7 +56,7 @@ const Header = () => {
               </LinkContainer>
             </Nav>
             <Nav className="ms-auto">
-              <LinkContainer to="/cart" style={{ position: "relative" }}>
+              <LinkContainer className="cart1" to="/cart" style={{ position: "relative" }}>
                 <Nav.Link>
                   {cartItems.length > 0 && (
                     <Badge
@@ -112,9 +112,31 @@ const Header = () => {
               <Dropdown.Item>Login</Dropdown.Item>
             </LinkContainer>
           </DropdownButton> */}
-                  <div className="cart">
-          <h3>test</h3>
-        </div>
+         <LinkContainer className="cart2" to="/cart" style={{ position: "relative" }}>
+          <Nav.Link>
+                  {cartItems.length > 0 && (
+                    <Badge
+                      pill
+                      bg="success"
+                      style={{
+                        position: "absolute",
+                        padding: "2px 5px",
+                        borderRadius: "100%",
+                        top: "-5px",
+                        left: "-12px",
+                      }}
+                    >
+                      {cartItems.reduce(
+                        (a, c) => (a + c.qty < 99 ? a + c.qty : "99+"),
+                        0
+                      )}
+                    </Badge>
+                  )}
+                  <FaCartShopping className="mx-2"></FaCartShopping>
+                  Cart
+                </Nav.Link>
+                </LinkContainer>
+               
         </Container>
 
       </Navbar>

@@ -25,6 +25,23 @@ section {
   display: block;
 }
 
+
+
+.cart2 {
+  position: absolute !important;
+  color: #fff;
+  right: 20%;
+  top: 26px;
+}
+
+.cart2:hover {
+  color: #fff;
+}
+
+a.cart2.active.nav-link {
+  color: #fff;
+}
+
 /*--------------- Navigation menu -----------------*/
 .nav-menu-link::after{
   display: none;
@@ -245,5 +262,59 @@ section {
 
 .contact-footer li {
   margin-bottom: 10px;
+}
+
+/*--------------- Values -----------------*/
+
+.value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.value i {
+  font-size: 3rem;
+}
+
+.value h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.value p {
+  font-size: 1rem;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px){
+
+  .cart1 {
+    display: none;
+  }
+  
+  
+  
+  }
+
+@media (min-width: 768px){
+
+.cart2 {
+  display: none;
+
+  
+}
+
+
+
 }
 
