@@ -8,8 +8,8 @@ import Product from "./models/productModel.js";
 import Order from "./models/orderModel.js";
 import connectDB from "../backend/config/db.js";
 
-//! This seeder file  is typically used to populate a MongoDB database with initial data for testing or development purposes.
-//! It's commonly executed manually or as part of an automated process, like a script in a package.json file or a dedicated seeding script.
+// ? This seeder file  is typically used to populate a MongoDB database with initial data for testing or development purposes.
+//? It's commonly executed manually or as part of an automated process, like a script in a package.json file or a dedicated seeding script.
 
 config();
 

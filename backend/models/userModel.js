@@ -17,20 +17,20 @@ const userSchema = new Schema(
     },
     isAdmin: {
       type: Boolean,
-      default: false,
-      required: true,
+      default: false  ,
+      required: true, 
     },
   },
   { timestamps: true }
 );
 
-//! create a matchPassword function with Schema.methods to verify the userPassword
+//! create a matchPassword (customized) function with Schema.methods to verify the userPassword
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-//! Use a pre-save hook to hash the password before saving
+//! Use a pre-save hook to hash the password before saving 
 
 userSchema.pre("save", async function (next) {
   const user = this;
