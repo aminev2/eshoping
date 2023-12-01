@@ -31,7 +31,7 @@ const Footer = () => {
                   <a href="lien">Contact</a>
                 </li>
             </div>
-            <div className="col-md-3 footer-icones">
+            <div className="col-md-2 footer-icones">
             <h3>Follow us</h3>
                 <li className='social'>
                   <a href="lien">
@@ -49,7 +49,7 @@ const Footer = () => {
                   </a>
                 </li>
             </div>
-            <div className="col-md-3 contact-footer footer-icones">
+            <div className="col-md-4 contact-footer footer-icones">
             <h3>Contact us</h3>
                 <li>
                   <i className="bi bi-geo-alt-fill"></i> 123 rue de la paix

@@ -6,6 +6,23 @@ const Testimonial = () => {
           <div class="carousel-item carousel-item-testi active">
             <img src={`${process.env.PUBLIC_URL}/images/avatar.png`} class="d-block avatar" alt="..." />
             <h4>jhon smith</h4>
+            <div className="rating">
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+            </div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
               voluptatibus exercitationem earum officia numquam unde laboriosam
@@ -16,6 +33,23 @@ const Testimonial = () => {
           <div class="carousel-item carousel-item-testi">
           <img src={`${process.env.PUBLIC_URL}/images/avatar.png`} class="d-block avatar" alt="..." />
             <h4>jhon smith</h4>
+            <div className="rating">
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+            </div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
               voluptatibus exercitationem earum officia numquam unde laboriosam
@@ -26,6 +60,23 @@ const Testimonial = () => {
           <div class="carousel-item carousel-item-testi">
           <img src={`${process.env.PUBLIC_URL}/images/avatar.png`} class="d-block avatar" alt="..." />
             <h4>jhon smith</h4>
+            <div className="rating">
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+                <span className="star">
+                    <i className="bi bi-star-fill"></i>
+                </span>
+            </div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
               voluptatibus exercitationem earum officia numquam unde laboriosam
@@ -40,8 +91,10 @@ const Testimonial = () => {
           data-bs-target="#carouselExample"
           data-bs-slide="prev"
         >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+          {/* <span class="carousel-control-prev-icon" aria-hidden="true"></span> */}
+          <span class="prev">
+            <i class="bi bi-chevron-left"></i>
+          </span>
         </button>
         <button
           class="carousel-control-next"
@@ -49,8 +102,10 @@ const Testimonial = () => {
           data-bs-target="#carouselExample"
           data-bs-slide="next"
         >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+          {/* <span class="carousel-control-next-icon" aria-hidden="true"></span> */}
+          <span class="next">
+            <i class="bi bi-chevron-right"></i>
+          </span>
         </button>
       </div>
     </section>
