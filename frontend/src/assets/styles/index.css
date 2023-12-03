@@ -6,10 +6,10 @@ li {
 a {
   text-decoration: none;
   color: black;
-} 
+}
 
 .main {
-  margin-top: 0px; 
+  margin-top: 0px;
 }
 
 section {
@@ -24,8 +24,6 @@ section {
 .navbar .dropdown:hover .dropdown-menu {
   display: block;
 }
-
-
 
 .cart2 {
   position: absolute !important;
@@ -43,7 +41,7 @@ a.cart2.active.nav-link {
 }
 
 /*--------------- Navigation menu -----------------*/
-.nav-menu-link::after{
+.nav-menu-link::after {
   display: none;
 }
 
@@ -215,12 +213,6 @@ a.cart2.active.nav-link {
   margin: 0 auto;
 }
 
-
-
-
-
-
-
 /*--------------- Footer -----------------*/
 
 .footer {
@@ -286,35 +278,19 @@ a.cart2.active.nav-link {
   text-align: center;
 }
 
+td,
+th {
+  text-align: center;
+}
 
-
-
-
-
-
-
-
-
-
-@media (max-width: 768px){
-
+@media (max-width: 768px) {
   .cart1 {
     display: none;
   }
-  
-  
-  
+}
+
+@media (min-width: 768px) {
+  .cart2 {
+    display: none;
   }
-
-@media (min-width: 768px){
-
-.cart2 {
-  display: none;
-
-  
 }
-
-
-
-}
-

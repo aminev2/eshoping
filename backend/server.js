@@ -38,6 +38,12 @@ app.get("/", (req, res) => {
   res.status(200).send("API is running");
 });
 
+
+// PayPal API
+app.get("/api/config/paypal", (req, res) => {
+  res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
+});
+
 // Route handlers for products, users, and orders
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
