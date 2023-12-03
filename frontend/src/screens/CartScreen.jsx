@@ -57,7 +57,6 @@ const CartScreen = () => {
             Go back
           </Button>
           <h1 style={{ marginBottom: "20px" }}>Shopping Cart</h1>
-
           {cartItems.length === 0 ? (
             <Message>
               Your cart is empty{" "}

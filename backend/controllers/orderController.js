@@ -1,6 +1,6 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Order from "../models/orderModel.js";
-
+import {updateProductStock} from "../models/productModel.js";
 //! @desc Create new order
 // @route  POST /api/orders
 // @access Private
@@ -98,6 +98,8 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   }
 
   const updatedOrder = await order.save();
+
+  updateProductStock(updatedOrder);
   res.status(200).json(updatedOrder);
 });
 

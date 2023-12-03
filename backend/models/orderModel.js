@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-
+import Product from "./productModel.js";
 const orderSchema = new Schema(
   {
     user: {
@@ -85,6 +85,8 @@ const orderSchema = new Schema(
   },
   { timestamps: true }
 );
+
+
 
 const Order = model("Order", orderSchema);
 
