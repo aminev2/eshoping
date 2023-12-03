@@ -1,12 +1,14 @@
 import reportWebVitals from "./reportWebVitals";
 import React from "react";
 import ReactDOM from "react-dom/client";
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
 } from "react-router-dom";
+
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 
@@ -21,7 +23,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
-  
+
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/index.css";
