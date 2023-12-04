@@ -21,9 +21,13 @@ import PrivateRoute from "./components/PrivateRoute";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
+import ContactScreen from "./screens/ContactScreen";
+import AboutScreen from "./screens/AboutScreen";
   
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 import "./assets/styles/index.css";
 
 const router = createBrowserRouter(
@@ -39,6 +43,11 @@ const router = createBrowserRouter(
       <Route path="/cart" element={<CartScreen></CartScreen>}></Route>
 
       <Route path="/login" element={<LoginScreen></LoginScreen>}></Route>
+
+      <Route path="/contact" element={<ContactScreen></ContactScreen>}></Route>
+
+      <Route path="/about" element={<AboutScreen></AboutScreen>}></Route>
+
 
       <Route
         path="/register"
