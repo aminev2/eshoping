@@ -1,6 +1,7 @@
 const Categories = () => {
   return (
     <section className="categories">
+      <h2 className="title">Our awesome categories</h2>
       <div className="container">
         <div className="row">
           <div className="col-md-7">

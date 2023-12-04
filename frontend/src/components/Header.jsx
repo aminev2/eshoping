@@ -61,13 +61,14 @@ const Header = () => {
                   {cartItems.length > 0 && (
                     <Badge
                       pill
-                      bg="success"
+                      bg=""
                       style={{
                         position: "absolute",
                         padding: "2px 5px",
                         borderRadius: "100%",
                         top: "5px",
                         left: "-4px",
+                        backgroundColor: "#fe4749"
                       }}
                     >
                       {cartItems.reduce(
@@ -117,13 +118,14 @@ const Header = () => {
                   {cartItems.length > 0 && (
                     <Badge
                       pill
-                      bg="success"
+                      bg=""
                       style={{
                         position: "absolute",
                         padding: "2px 5px",
                         borderRadius: "100%",
                         top: "-5px",
                         left: "-12px",
+                        backgroundColor: "#fe4749"
                       }}
                     >
                       {cartItems.reduce(
