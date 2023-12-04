@@ -10,10 +10,10 @@ li {
 a {
   text-decoration: none;
   color: black;
-} 
+}
 
 .main {
-  margin-top: 0px; 
+  margin-top: 0px;
 }
 
 section {
@@ -53,8 +53,6 @@ section {
   display: block;
 }
 
-
-
 .cart2 {
   position: absolute !important;
   color: #fff;
@@ -71,7 +69,7 @@ a.cart2.active.nav-link {
 }
 
 /*--------------- Navigation menu -----------------*/
-.nav-menu-link::after{
+.nav-menu-link::after {
   display: none;
 }
 
@@ -265,12 +263,6 @@ section.categories {
   font-size: 2.5rem;
 }
 
-
-
-
-
-
-
 /*--------------- Footer -----------------*/
 
 .footer {
@@ -372,6 +364,12 @@ h2.title::after {
   text-align: center;
 }
 
+
+td,
+th {
+  text-align: center;
+}
+
 /*--------------- Page contact -----------------*/
 
 .contact {
@@ -470,32 +468,14 @@ h2.title::after {
 
 
 
-
-
-
-
-
-
-
-@media (max-width: 768px){
-
+@media (max-width: 768px) {
   .cart1 {
     display: none;
   }
-  
-  
-  
+}
+
+@media (min-width: 768px) {
+  .cart2 {
+    display: none;
   }
-
-@media (min-width: 768px){
-
-.cart2 {
-  display: none;
-
-  
 }
-
-
-
-}
-

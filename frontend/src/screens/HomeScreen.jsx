@@ -63,6 +63,10 @@ const HomeScreen = () => {
                     </Col>
                   );
                 })}
+
+{/*              </Row>  
+            </div> */}
+
               </Row>
             </section>
           )}
