@@ -31,7 +31,7 @@ const ContactScreen = () => {
       <div className="contact-form">
         <div className="container">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-5">
               <h3>Send us message</h3>
               <form className="row">
                 <div className="form-group col-md-6">
@@ -74,19 +74,19 @@ const ContactScreen = () => {
                     placeholder="Message"
                   ></textarea>
                 </div>
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn-contact btn btn-primary">
                   Envoyer
                 </button>
               </form>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-7">
               <h3>Find us on map</h3>
               <div className="mapouter">
                 <div className="gmap_canvas">
                   <iframe
                     title="map"
                     width="100%"
-                    height="400"
+                    height="100%"
                     id="gmap_canvas"
                     src="https://maps.google.com/maps?q=paris&t=&z=13&ie=UTF8&iwloc=&output=embed"
                     frameBorder="0"

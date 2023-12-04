@@ -22,6 +22,7 @@ import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import ContactScreen from "./screens/ContactScreen";
+import AboutScreen from "./screens/AboutScreen";
   
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -44,6 +45,9 @@ const router = createBrowserRouter(
       <Route path="/login" element={<LoginScreen></LoginScreen>}></Route>
 
       <Route path="/contact" element={<ContactScreen></ContactScreen>}></Route>
+
+      <Route path="/about" element={<AboutScreen></AboutScreen>}></Route>
+
 
       <Route
         path="/register"
