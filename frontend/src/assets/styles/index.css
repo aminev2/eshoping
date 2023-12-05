@@ -43,6 +43,11 @@ section {
   margin-bottom: 2rem;
 }
 
+.form-check-input:checked {
+  background-color: #fe4749;
+  border-color: #fe4749;
+}
+
 
 /*--------------- Main navbar -----------------*/
 .top-nav {
@@ -462,6 +467,26 @@ th {
 .tow {
   background: #8f8f8f;
   padding: 20px;
+}
+
+/*--------------- Page shop -----------------*/
+
+.page-all-products {
+  background: #ededed;
+  padding: 3rem 0;
+}
+
+.side-filter h5 {
+  margin-bottom: 10px;
+  margin-top: 15px;
+  background: #fe4749;
+  padding: 10px;
+  color: #fff;
+}
+
+.star-filter {
+  color: rgb(255, 152, 0);
+  margin-right: 5px;
 }
 
 

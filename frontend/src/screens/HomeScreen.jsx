@@ -63,10 +63,6 @@ const HomeScreen = () => {
                     </Col>
                   );
                 })}
-
-{/*              </Row>  
-            </div> */}
-
               </Row>
             </section>
           )}
@@ -82,7 +78,7 @@ const HomeScreen = () => {
           right: '20px',
         }}
       >
-        <i class="bi bi-chevron-up"></i>
+        <i className="bi bi-chevron-up"></i>
       </button>
     </>
   );
