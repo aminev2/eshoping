@@ -3,12 +3,13 @@ import {
   getProducts,
   getProductById,
   createProductReview,
+  createProduct,
 } from "../controllers/productController.js";
 
-import { protect } from "../middlewares/authMiddleware.js";
+import { protect, admin } from "../middlewares/authMiddleware.js";
 const router = Router();
 
-router.get("/", getProducts);
+router.route("/").get(getProducts).post(protect, admin, createProduct);
 
 router.get("/:id", getProductById);
 

@@ -2,6 +2,7 @@ import { Schema, model } from "mongoose";
 
 const reviewSchema = new Schema(
   {
+    // Reference to the User model
     user: {
       type: Schema.Types.ObjectId,
       required: true,
@@ -28,12 +29,19 @@ const reviewSchema = new Schema(
 
 const productSchema = new Schema(
   {
+    // Reference to the User model
     user: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: "User",
     },
 
+    // Reference to the Category model
+    category: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "Category",
+    },
     name: {
       type: String,
       required: true,
@@ -47,11 +55,6 @@ const productSchema = new Schema(
     price: {
       type: Number,
       require: true,
-    },
-
-    brand: {
-      type: String,
-      required: true,
     },
 
     size: {

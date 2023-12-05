@@ -127,7 +127,12 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
 const getUsers = asyncHandler(async (req, res) => {
   const users = await User.find({});
-  res.status(200).send(users);
+  if (users) {
+    res.status(200).send(users);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
 });
 
 //!@desc Get user By ID

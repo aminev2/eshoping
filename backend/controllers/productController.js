@@ -1,6 +1,37 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Product from "../models/productModel.js";
 
+// @desc    Create a product
+// @route   POST /api/products
+// @access  Private/Admin
+const createProduct = asyncHandler(async (req, res) => {
+  const {
+    name,
+    price,
+    image,
+    brand,
+    category,
+    countInStock,
+    numReviews,
+    description,
+  } = req.body;
+
+  const product = new Product({
+    name,
+    price,
+    user: req.user._id,
+    image: "/images/sample.jpg",
+    brand: "Sample brand",
+    category,
+    countInStock: 0,
+    numReviews: 0,
+    description: "Sample description",
+  });
+
+  const createdProduct = await product.save();
+  res.status(201).json(createdProduct);
+});
+
 // @desc Fetch all products
 // @route GET /api/products
 // @access Public
@@ -105,4 +136,4 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
-export { getProducts, getProductById, createProductReview };
+export { getProducts, getProductById, createProductReview, createProduct };
