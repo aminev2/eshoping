@@ -38,7 +38,7 @@ const Header = () => {
               <img
                 src={`${process.env.PUBLIC_URL}/logo.png`}
                 alt="logo"
-                width={100}
+                width={80}
               />
             </Navbar.Brand>
           </LinkContainer>
