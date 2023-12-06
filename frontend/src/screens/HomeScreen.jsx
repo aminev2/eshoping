@@ -8,10 +8,11 @@ import Carousel from "../components/Carousel";
 import Categories from "../components/Categories";
 import Testimonial from "../components/Testimonial";
 import Value from "../components/Value";
+import { useNavigate } from "react-router-dom";
 
 const HomeScreen = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       await refetch();
@@ -21,7 +22,19 @@ const HomeScreen = () => {
   }, [refetch]);
   return (
     <>
-      <Carousel></Carousel>
+    <div className="header-video">
+      <div className="video-container">
+        <video className="background-video" autoPlay loop muted>
+          <source src="https://res.cloudinary.com/doye6tvxz/video/upload/v1701812558/background2-video_online-video-cutter.com_rztuey.mp4" type="video/mp4" />
+        </video>
+        <div className="content-video">
+        <h1>Welcome to Advenshop</h1>
+        <p>Find the best outdoor gear for your next adventure</p>
+        
+        <button className="btn btn-primary" onClick={()=>navigate("/products")}>Shop Now</button>
+        </div>
+      </div>
+      </div>
       <section className="choose-us">
         <div className="container">
           <div className="row">
