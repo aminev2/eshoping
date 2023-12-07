@@ -96,12 +96,12 @@ const HomeScreen = () => {
                     <Col key={product._id} sm={12} md={4} lg={3} lx={3}>
                       <Product className="product" product={product}>
                         {
-                          <Button
+                          <OffCanvasCartScreen
                             disabled={product.countInStock <= 0}
                             onClick={() => addToCartHandler(product, 1)}
                           >
                             add to cart
-                          </Button>
+                          </OffCanvasCartScreen>
                         }
                       </Product>
                     </Col>

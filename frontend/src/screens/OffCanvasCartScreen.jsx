@@ -3,7 +3,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { Button } from "react-bootstrap";
 import SideCartScreen from "./SideCartScreen";
 
-function OffCanvasCartScreen({ disabled }) {
+function OffCanvasCartScreen({ disabled, onClick }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -14,7 +14,10 @@ function OffCanvasCartScreen({ disabled }) {
       <Button
         variant="primary"
         disabled={disabled}
-        onClick={toggleShow}
+        onClick={() => {
+          toggleShow();
+          onClick();
+        }}
         className="me-2"
       >
         Add to cart

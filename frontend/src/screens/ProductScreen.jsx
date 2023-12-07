@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Link, useParams, useNavigate} from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import {
   Row,
   Col,
@@ -67,7 +67,7 @@ const ProductScreen = () => {
   };
   return (
     <div className="container">
-      <Link className="btn btn-light my-3" to={"/"}>
+      <Link className="btn btn-light my-3" to={-1}>
         Go back
       </Link>
       {isLoading ? (
