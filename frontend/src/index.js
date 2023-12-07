@@ -55,8 +55,10 @@ const router = createBrowserRouter(
       <Route path="/about" element={<AboutScreen></AboutScreen>}></Route>
 
       <Route
-        path="/products"
-        element={<FilterProductsScreen></FilterProductsScreen>}
+        path="/products/"
+        element={<FilterProductsScreen>
+
+        </FilterProductsScreen>}
       ></Route>
 
       <Route

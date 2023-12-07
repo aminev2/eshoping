@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, selectCart } from "../slices/cartSlice";
+
 import Product from "../components/Product";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import OffCanvasCartScreen from "../screens/OffCanvasCartScreen";
 import Carousel from "../components/Carousel";
 import Categories from "../components/Categories";
 import Testimonial from "../components/Testimonial";
@@ -11,6 +15,16 @@ import Value from "../components/Value";
 
 const HomeScreen = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
+  // Redux hooks for accessing state and dispatching actions
+  const dispatch = useDispatch();
+  const cart = useSelector(selectCart);
+  const { cartItems } = cart;
+
+  // Handles the addition of a product to the shopping cart.
+
+  const addToCartHandler = async (product, qty) => {
+    dispatch(addToCart({ ...product, qty }));
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,7 +83,9 @@ const HomeScreen = () => {
             <Loader></Loader>
           ) : error ? (
             <Message variant={"danger"}>
-              {error?.data?.message || error.error}
+              {
+                "We're sorry, but we encountered an issue while processing your request."
+              }
             </Message>
           ) : (
             <section className="last-products">
@@ -78,7 +94,16 @@ const HomeScreen = () => {
                 {products.slice(0, 4).map((product) => {
                   return (
                     <Col key={product._id} sm={12} md={4} lg={3} lx={3}>
-                      <Product className="product" product={product}></Product>
+                      <Product className="product" product={product}>
+                        {
+                          <Button
+                            disabled={product.countInStock <= 0}
+                            onClick={() => addToCartHandler(product, 1)}
+                          >
+                            add to cart
+                          </Button>
+                        }
+                      </Product>
                     </Col>
                   );
                 })}

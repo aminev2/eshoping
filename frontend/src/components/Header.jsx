@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { selectAuth, logout } from "../slices/authSlice";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import NavBarCategories from "./NavBarCategories";
 
 const Header = () => {
   const { cartItems } = useSelector(selectCart);
@@ -151,6 +152,7 @@ const Header = () => {
           </LinkContainer>
         </Container>
       </Navbar>
+
       <div className="nav-menu">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <ul className="navbar-nav navbar-menu">

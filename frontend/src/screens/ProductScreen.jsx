@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate} from "react-router-dom";
 import {
   Row,
   Col,
@@ -158,14 +158,19 @@ const ProductScreen = () => {
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
               <ListGroup variant="flush">
-                {product.reviews.map((review) => (
-                  <ListGroup.Item key={review._id}>
-                    <strong>{review.name}</strong>
-                    <Rating ratingValue={review.rating} addRate />
-                    <p>{review.createdAt.substring(0, 10)}</p>
-                    <p>{review.comment}</p>
-                  </ListGroup.Item>
-                ))}
+                <div style={{ maxHeight: "200px", overflowY: "scroll" }}>
+                  {product.reviews.map(
+                    (review) =>
+                      review.isAppropriate && (
+                        <ListGroup.Item key={review._id}>
+                          <strong>{review.name}</strong>
+                          <Rating ratingValue={review.rating} addRate />
+                          <p>{review.createdAt.substring(0, 10)}</p>
+                          <p>{review.comment}</p>
+                        </ListGroup.Item>
+                      )
+                  )}
+                </div>
                 <ListGroup.Item>
                   <h2>Write a review your opinion matters</h2>
 

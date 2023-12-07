@@ -23,6 +23,11 @@ const reviewSchema = new Schema(
       type: String,
       required: true,
     },
+
+    isAppropriate: {
+      type: Boolean,
+      required: true,
+    },
   },
   { timestamps: true }
 );
@@ -60,11 +65,6 @@ const productSchema = new Schema(
     size: {
       type: String,
     },
-    category: {
-      type: String,
-      required: true,
-    },
-
     description: {
       type: String,
       required: true,
