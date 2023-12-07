@@ -12,9 +12,17 @@ import Carousel from "../components/Carousel";
 import Categories from "../components/Categories";
 import Testimonial from "../components/Testimonial";
 import Value from "../components/Value";
+import NavBarCategories from "../components/NavBarCategories";
+import { useGetAllCategoriesQuery } from "../slices/categoriesApiSlice";
 
 const HomeScreen = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
+  const {
+    data: categories,
+    isLoading: isLoadingCategories,
+    error: categoriesError,
+    refetch: refetchCategories,
+  } = useGetAllCategoriesQuery();
   // Redux hooks for accessing state and dispatching actions
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);
@@ -26,15 +34,14 @@ const HomeScreen = () => {
     dispatch(addToCart({ ...product, qty }));
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await refetch();
-    };
-
-    fetchData();
-  }, [refetch]);
   return (
     <>
+      {!isLoading && (
+        <NavBarCategories
+          categories={categories}
+          products={products}
+        ></NavBarCategories>
+      )}
       <Carousel></Carousel>
       <section className="choose-us">
         <div className="container">
@@ -91,7 +98,7 @@ const HomeScreen = () => {
             <section className="last-products">
               <h2 className="title">Latest Products</h2>
               <Row>
-                {products.slice(0, 4).map((product) => {
+                {products?.slice(0, 4).map((product) => {
                   return (
                     <Col key={product._id} sm={12} md={4} lg={3} lx={3}>
                       <Product className="product" product={product}>

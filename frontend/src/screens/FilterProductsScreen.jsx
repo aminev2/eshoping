@@ -12,13 +12,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToCart, selectCart } from "../slices/cartSlice";
 import Rating from "../components/Rating";
 import OffCanvasCartScreen from "./OffCanvasCartScreen";
+import { useLocation } from "react-router-dom";
 
 function FilterProductsScreen() {
+  const location = useLocation();
+  console.log(location.state);
   const {
     data: categories,
     isLoading: isLoadingCategories,
     error: categoriesError,
-    refetch,
+    refetch: refetchCategories,
   } = useGetAllCategoriesQuery();
 
   const searchRef = useRef();
@@ -31,7 +34,9 @@ function FilterProductsScreen() {
 
   const [minPrice, setMinPrice] = useState();
   const [maxPrice, setMaxPrice] = useState();
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState(
+    location?.state?.category ?? location?.state?.category
+  );
   const [rating, setRating] = useState();
   const [search, setSearch] = useState();
   const [hideRating, setHideRating] = useState(false);
@@ -87,7 +92,7 @@ function FilterProductsScreen() {
                   <ListGroup.Item>
                     <Form.Check
                       type="radio"
-                      label="all"
+                      label="All categories"
                       name="category"
                       onClick={() => {
                         setCategory("");
@@ -102,6 +107,9 @@ function FilterProductsScreen() {
                     return (
                       <ListGroup.Item key={category._id}>
                         <Form.Check
+                          defaultChecked={
+                            location?.state?.category === category._id
+                          }
                           type="radio"
                           label={`${category.name} (${
                             allProducts?.filter(
@@ -271,11 +279,9 @@ function FilterProductsScreen() {
                 {isLoadingProducts ? (
                   <Loader></Loader>
                 ) : error ? (
-                  <Message variant={"danger"}>
+                  <Message className="text-center" variant={"danger"}>
                     {
-                      /* "We're sorry, but we encountered an issue while processing your request."
-                       */
-                      error?.data?.Message || error?.message
+                      "We're sorry, but we encountered an issue while processing your request."
                     }
                   </Message>
                 ) : (
