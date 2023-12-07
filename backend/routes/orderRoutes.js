@@ -11,7 +11,7 @@ import {
   
 const router = Router();
 
-router.route("/").post(protect, addOrderItems).get(protect, admin, getOrders);
+router.route("/").post(protect, addOrderItems).get(/* protect, admin, */ getOrders);
 
 router.route("/mine").get(protect, getMyOrders);
 

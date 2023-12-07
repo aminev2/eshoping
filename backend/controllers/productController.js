@@ -28,13 +28,33 @@ const getProductById = asyncHandler(async (req, res) => {
 //! @desc Fetch  a product
 // @route GET /api/products/:id
 // @access Private/Admin
+
+
+//! @desc Get product count by day
+// @route GET /api/products/count-by-day
+// @access Private/Admin
+const getProductCountByDay = asyncHandler(async (req, res) => {
+  const productCountByDay = await Product.aggregate([
+    {
+      $group: {
+        _id: {
+          day: { $dayOfYear: "$createdAt" },
+          year: { $year: "$createdAt" }
+        },
+        count: { $sum: 1 }
+      }
+    }
+  ]);
+
+  if (!productCountByDay) {
+    res.status(404);
+    throw new Error("No data found");
+  }
+
+  return res.status(200).json(productCountByDay);
+});
   
 
 
 
-
-
-
-
-
-export { getProducts, getProductById };
+export { getProducts, getProductById, getProductCountByDay };
