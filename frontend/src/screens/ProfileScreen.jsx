@@ -160,8 +160,9 @@ const ProfileScreen = () => {
         {isLoadingMyOrders ? (
           <Loader></Loader>
         ) : error ? (
-          <Message variant={"danger"}>
-            {error?.data?.message || error.error}
+          <Message variant={"danger"} className={"text-center"}>
+            "We're sorry, but we encountered an issue while processing your
+            request."
           </Message>
         ) : (
           <BootstrapTable

@@ -4,7 +4,6 @@ import { FaCartShopping, FaUser } from "react-icons/fa6";
 import { LinkContainer } from "react-router-bootstrap"; //need it
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import logo from "../assets/logo_ishop.png";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCart } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
@@ -152,7 +151,6 @@ const Header = () => {
           </LinkContainer>
         </Container>
       </Navbar>
-      
     </header>
   );
 };

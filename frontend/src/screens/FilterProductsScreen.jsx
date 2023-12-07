@@ -16,7 +16,6 @@ import { useLocation } from "react-router-dom";
 
 function FilterProductsScreen() {
   const location = useLocation();
-  console.log(location.state);
   const {
     data: categories,
     isLoading: isLoadingCategories,
@@ -80,7 +79,7 @@ function FilterProductsScreen() {
                   ref={searchRef}
                   onChange={() =>
                     setTimeout(() => {
-                      setSearch(searchRef.current.value);
+                      setSearch(searchRef?.current?.value);
                     }, 1500)
                   }
                 />
@@ -119,7 +118,7 @@ function FilterProductsScreen() {
                           value={category._id}
                           name="category"
                           onClick={(event) => {
-                            setCategory(event.target.value);
+                            setCategory(event.target?.value);
                             setHideCategorizing(true);
                           }}
                         />

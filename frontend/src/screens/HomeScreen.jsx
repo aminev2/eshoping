@@ -89,7 +89,7 @@ const HomeScreen = () => {
           {isLoading ? (
             <Loader></Loader>
           ) : error ? (
-            <Message variant={"danger"}>
+            <Message variant={"danger"} className={"text-center"}>
               {
                 "We're sorry, but we encountered an issue while processing your request."
               }
