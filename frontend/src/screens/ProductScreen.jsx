@@ -1,11 +1,13 @@
 import React, { Fragment, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import Pagination from "react-bootstrap/Pagination";
 import {
   Row,
   Col,
   Image,
   ListGroup,
   Card,
+  ButtonGroup,
   Button,
   Form,
 } from "react-bootstrap";
@@ -30,6 +32,13 @@ const ProductScreen = () => {
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+
+  const [activeSize, setActiveSize] = useState(false);
+  const [size, setSize] = useState(false);
+  const handleSizeClick = (clickedSize) => {
+    setActiveSize(clickedSize);
+    setSize(size);
+  };
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -67,7 +76,7 @@ const ProductScreen = () => {
   };
   return (
     <div className="container">
-      <Link className="btn btn-light my-3" to={"/"}>
+      <Link className="btn btn-light my-3" to={-1}>
         Go back
       </Link>
       {isLoading ? (
@@ -106,20 +115,40 @@ const ProductScreen = () => {
                       </Col>
                     </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item>
-                    <Row>
-                      <Col>Status:</Col>
+                  {product?.sizes && (
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>Sizes:</Col>
 
-                      <Col>
-                        <strong>
-                          {product.countInStock > 0
-                            ? "In stock"
-                            : "Out of stock"}
-                        </strong>
-                      </Col>
-                    </Row>
-                  </ListGroup.Item>
-                  {product.countInStock >= 1 && (
+                        <Col>
+                          <ButtonGroup>
+                            {product?.sizes &&
+                              product.sizes.map((productSize) => {
+                                return (
+                                  <>
+                                    <Button
+                                      key={productSize}
+                                      size={"sm"}
+                                      className={`mx-1 ${
+                                        activeSize === productSize
+                                          ? "active"
+                                          : ""
+                                      }`}
+                                      onClick={() =>
+                                        handleSizeClick(productSize)
+                                      }
+                                    >
+                                      {productSize}
+                                    </Button>
+                                  </>
+                                );
+                              })}
+                          </ButtonGroup>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  )}
+                  {product?.countInStock >= 1 && (
                     <ListGroup.Item>
                       <Row className="text-center">
                         <Col>Quantity:</Col>
@@ -158,16 +187,21 @@ const ProductScreen = () => {
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
               <ListGroup variant="flush">
-                {product.reviews.map((review) => (
-                  <ListGroup.Item key={review._id}>
-                    <strong>{review.name}</strong>
-                    <Rating ratingValue={review.rating} addRate />
-                    <p>{review.createdAt.substring(0, 10)}</p>
-                    <p>{review.comment}</p>
-                  </ListGroup.Item>
-                ))}
+                <div style={{ maxHeight: "200px", overflowY: "scroll" }}>
+                  {product.reviews.map(
+                    (review) =>
+                      review.isAppropriate && (
+                        <ListGroup.Item key={review._id}>
+                          <strong>{review.name}</strong>
+                          <Rating ratingValue={review.rating} addRate />
+                          <p>{review.createdAt.substring(0, 10)}</p>
+                          <p>{review.comment}</p>
+                        </ListGroup.Item>
+                      )
+                  )}
+                </div>
                 <ListGroup.Item>
-                  <h2>Write a Customer Review</h2>
+                  <h2>Write a review your opinion matters</h2>
 
                   {isLoadingProductReview && <Loader />}
 

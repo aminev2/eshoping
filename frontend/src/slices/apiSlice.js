@@ -10,7 +10,7 @@ export const apiSlice = createApi({
   // Provide the base query to be used for making requests
   baseQuery,
   // Define tag types for better organization and documentation
-  tagTypes: ["Product", "Order", "User"],
+  tagTypes: ["Product", "Order", "User","Category"],
   // Define API endpoints using the builder function
   endpoints: (builder) => ({
     // Add your API endpoints here using the builder

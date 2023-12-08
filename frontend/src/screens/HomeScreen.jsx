@@ -1,28 +1,49 @@
 import React, { useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, selectCart } from "../slices/cartSlice";
+import { useNavigate } from "react-router-dom";
 import Product from "../components/Product";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-// import Carousel from "../components/Carousel";
+import OffCanvasCartScreen from "../screens/OffCanvasCartScreen";
+import Carousel from "../components/Carousel";
 import Categories from "../components/Categories";
 import Testimonial from "../components/Testimonial";
 import Value from "../components/Value";
-import { useNavigate } from "react-router-dom";
-
+import NavBarCategories from "../components/NavBarCategories";
+import { useGetAllCategoriesQuery } from "../slices/categoriesApiSlice";
 
 const HomeScreen = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
+  const {
+    data: categories,
+    isLoading: isLoadingCategories,
+    error: categoriesError,
+    refetch: refetchCategories,
+  } = useGetAllCategoriesQuery();
+  // Redux hooks for accessing state and dispatching actions
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  useEffect(() => {
-    const fetchData = async () => {
-      await refetch();
-    };
+  const cart = useSelector(selectCart);
+  const { cartItems } = cart;
 
-    fetchData();
-  }, [refetch]);
+  // Handles the addition of a product to the shopping cart.
+
+  const addToCartHandler = async (product, qty) => {
+    dispatch(addToCart({ ...product, qty }));
+  };
+
   return (
     <>
+      {!isLoading && (
+        <NavBarCategories
+          categories={categories}
+          products={products}
+        ></NavBarCategories>
+      )}
+
     <div className="header-video">
       <div className="video-container">
         <video className="background-video" autoPlay loop muted>
@@ -36,6 +57,7 @@ const HomeScreen = () => {
         </div>
       </div>
       </div>
+
       <section className="choose-us">
         <div className="container">
         <h2 className="title">Why Choose Us</h2>
@@ -83,18 +105,29 @@ const HomeScreen = () => {
           {isLoading ? (
             <Loader></Loader>
           ) : error ? (
-            <Message variant={"danger"}>
-              {error?.data?.message || error.error}
+            <Message variant={"danger"} className={"text-center"}>
+              {
+                "We're sorry, but we encountered an issue while processing your request."
+              }
             </Message>
           ) : (
             <section className="last-products">
               <h2 className="title">Latest products</h2>
               <span className="line-title"></span>
               <Row>
-                {products.slice(0, 4).map((product) => {
+                {products?.slice(0, 4).map((product) => {
                   return (
                     <Col key={product._id} sm={12} md={4} lg={3} lx={3}>
-                      <Product className="product" product={product}></Product>
+                      <Product className="product" product={product}>
+                        {
+                          <OffCanvasCartScreen
+                            disabled={product.countInStock <= 0}
+                            onClick={() => addToCartHandler(product, 1)}
+                          >
+                            add to cart
+                          </OffCanvasCartScreen>
+                        }
+                      </Product>
                     </Col>
                   );
                 })}

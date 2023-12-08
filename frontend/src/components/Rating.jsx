@@ -31,7 +31,7 @@ const Rating = ({ ratingValue, numReviews, addRate }) => {
   };
 
   return (
-    <div>
+    <div >
       <span>{generateStars()}</span>
 
       {!addRate && (
