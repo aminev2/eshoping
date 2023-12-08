@@ -1,4 +1,15 @@
 /*--------------- Main styles -----------------*/
+
+.cb {
+  background: #ededed;
+  padding: 2rem 0;
+}
+
+.center-item {
+  display: block;
+  margin: 0 auto;
+}
+
 .main-color {
   color: #fe4749 !important;
 }
@@ -27,7 +38,7 @@ a {
 }
 
 section {
-  padding: 5rem 0;
+  padding: 3rem 0;
 }
 
 .header-page {
@@ -50,7 +61,17 @@ section {
   font-size: 2rem;
   font-weight: 600;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+
+.line-title {
+    background: #fe4749;
+    width: 80px;
+    height: 3px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10%;
+    margin-bottom: 2rem;
 }
 
 .form-check-input:checked {
@@ -58,6 +79,17 @@ section {
   border-color: #fe4749;
 }
 
+.btn-primary {
+  --bs-btn-hover-bg: #fe4749;
+  --bs-btn-active-bg: #fe4749;
+  --bs-btn-active-border-color: #fe4749;
+}
+
+.btn:disabled, fieldset:disabled .btn {
+  background-color: #fe4749;
+  border-color: #a10000;
+  opacity: #a10000;
+}
 
 /*--------------- Main navbar -----------------*/
 .top-nav {
@@ -93,7 +125,8 @@ a.cart2.active.nav-link {
 }
 
 .navbar-menu li {
-  margin: 0 0.5rem;
+  margin: 0 0.4rem;
+  font-size: 1rem;
 }
 
 .navbar-menu li a {
@@ -334,17 +367,17 @@ section.categories {
   margin: 10px;
 }
 
+section.choose-us {
+  background: #202529;
+}
+
+section.choose-us h2.title {
+  color: #fff;
+}
+
 .choose-item p {
   font-size: 1.1rem;
   text-align: center;
-}
-
-h2.title::after {
-  content: '_____';
-  letter-spacing: -2px;
-  display: block;
-  font-weight: 900;
-  color: #fe4749;
 }
 
 .choose-item i {
@@ -543,6 +576,9 @@ th {
   color: rgb(255, 152, 0);
   margin-right: 5px;
 }
+
+/*--------------- Page profile -----------------*/
+
 
 
 

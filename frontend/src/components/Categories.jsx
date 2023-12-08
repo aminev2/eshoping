@@ -2,6 +2,7 @@ const Categories = () => {
   return (
     <section className="categories">
       <h2 className="title">Our awesome categories</h2>
+      <span className="line-title"></span>
       <div className="container">
         <div className="row">
           <div className="col-md-7">

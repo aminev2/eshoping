@@ -133,13 +133,14 @@ const OrderScreen = () => {
   ) : error ? (
     <Message variant={"danger"}>{error?.data?.message || error.error}</Message>
   ) : (
-    <>
-      <h1>Order {order._id}</h1>
+    <div className="orders cb pt-4 pb-4">
+      <div className="container">
+      <h2 className="mt-3">Order {order._id}</h2>
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h2>Shipping information</h2>
+              <h3>Shipping information</h3>
               <p>
                 <strong>Name: </strong>
                 {order.user.name}
@@ -167,7 +168,7 @@ const OrderScreen = () => {
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <h2>Payment Method</h2>
+              <h3>Payment Method</h3>
               <p>
                 <strong>Method: </strong>
                 {order.paymentMethod}
@@ -281,7 +282,8 @@ const OrderScreen = () => {
           </Card>
         </Col>
       </Row>
-    </>
+    </div>
+    </div>
   );
 };
 

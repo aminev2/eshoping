@@ -4,11 +4,12 @@ import { useGetProductsQuery } from "../slices/productsApiSlice";
 import Product from "../components/Product";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import Carousel from "../components/Carousel";
+// import Carousel from "../components/Carousel";
 import Categories from "../components/Categories";
 import Testimonial from "../components/Testimonial";
 import Value from "../components/Value";
 import { useNavigate } from "react-router-dom";
+
 
 const HomeScreen = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
@@ -37,8 +38,9 @@ const HomeScreen = () => {
       </div>
       <section className="choose-us">
         <div className="container">
+        <h2 className="title">Why Choose Us</h2>
+            <span className="line-title"></span>
           <div className="row">
-            <h2 className="title">Why Choose Us</h2>
             <div className="col-md-4">
               <div className="choose-item">
                 <i className="bi bi-diagram-3"></i>
@@ -86,7 +88,8 @@ const HomeScreen = () => {
             </Message>
           ) : (
             <section className="last-products">
-              <h2 className="title">Latest Products</h2>
+              <h2 className="title">Latest products</h2>
+              <span className="line-title"></span>
               <Row>
                 {products.slice(0, 4).map((product) => {
                   return (
@@ -96,7 +99,9 @@ const HomeScreen = () => {
                   );
                 })}
               </Row>
+              
             </section>
+            
           )}
         </div>
       </div>
