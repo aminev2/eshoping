@@ -20,11 +20,15 @@ const userSchema = new Schema(
       default: false,
       required: true,
     },
+    status: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );
 
-//! create a matchPassword function with Schema.methods to verify the userPassword
+//! create a matchPassword (customized) function with Schema.methods to verify the userPassword
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);

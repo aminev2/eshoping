@@ -19,7 +19,7 @@ import { addToCart, removeFromCart, selectCart } from "../slices/cartSlice";
  * Handles the display of cart items, their quantities, and provides options
  * to add, remove items, and proceed to checkout.
  */
-const CartScreen = () => {
+const SideCartScreen = () => {
   // React Router hook for navigation
   const navigate = useNavigate();
 
@@ -50,18 +50,12 @@ const CartScreen = () => {
   };
 
   return (
-    <div className="cb">
-      <div className="container">
+    <div>
       <Row>
-        <Col md={8}>
-          {/* <Button className="btn btn-light my-3" onClick={() => navigate(-1)}>
-            Go back
-          </Button> */}
-          <h1 style={{ marginBottom: "20px" }}>Shopping Cart</h1>
+        <Col md={12}>
           {cartItems.length === 0 ? (
             <Message>
-              Your cart is empty{" "}
-              <Link to="/"> Shop today' latest products</Link>
+              Your cart is empty <Link to="/products">Check Our Products</Link>
             </Message>
           ) : (
             <ListGroup variant="flush">
@@ -69,22 +63,20 @@ const CartScreen = () => {
                 return (
                   <ListGroup.Item key={item._id}>
                     <Row>
-                      <Col md={2}>
-                        <Image
-                          src={item.image}
-                          alt={item.name}
-                          fluid
-                          rounded
-                        ></Image>
-                      </Col>
                       <Col md={4}>
-                        <Link to={`/products/${item._id}`}>{item.name}</Link>
+                        <Link to={`/products/${item._id}`}>
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fluid
+                            rounded
+                          ></Image>
+                        </Link>
                       </Col>
 
-                      <Col md={2}>$ {item.price}</Col>
+                      <Col md={3}>$ {item.price}</Col>
 
                       <Col md={3} className="text-center">
-                        <Col>Quantity:</Col>
                         <Form.Label>
                           <strong>{item.qty}</strong>
                         </Form.Label>
@@ -110,34 +102,38 @@ const CartScreen = () => {
                         </Button>
                       </Col>
                     </Row>
+                    <Row></Row>
                   </ListGroup.Item>
                 );
               })}
             </ListGroup>
           )}
         </Col>
-        <Col md={4}>
-          <Card>
+        <Col md={12}>
+          <Card className="my-4 mx-4">
             <ListGroup variant="flush">
-              <ListGroup.Item>
-                <h4>
-                  Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}{" "}
-                  ) items
-                </h4>
-                $
-                {cartItems
-                  .reduce((acc, item) => acc + item.qty * item.price, 0)
-                  .toFixed(2)}
+              <ListGroup.Item className="d-flex justify-content-between">
+                <span>
+                  Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                  ) items{" "}
+                </span>
+                <span>
+                  {" "}
+                  $
+                  {cartItems
+                    .reduce((acc, item) => acc + item.qty * item.price, 0)
+                    .toFixed(2)}
+                </span>
               </ListGroup.Item>
 
-              <ListGroup.Item>
+              <ListGroup.Item className="text-center">
                 <Button
                   type="button"
-                  className="btn-block"
+                  className="btn-block fs-6"
                   disabled={cartItems.length === 0}
                   onClick={() => checkoutHandler()}
                 >
-                  Proceed To Checkout
+                  Checkout
                 </Button>
               </ListGroup.Item>
             </ListGroup>
@@ -145,8 +141,7 @@ const CartScreen = () => {
         </Col>
       </Row>
     </div>
-    </div>
   );
 };
 
-export default CartScreen;
+export default SideCartScreen;
