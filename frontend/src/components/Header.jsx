@@ -4,13 +4,13 @@ import { FaCartShopping, FaUser } from "react-icons/fa6";
 import { LinkContainer } from "react-router-bootstrap"; //need it
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import logo from "../assets/logo_ishop.png";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCart } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { selectAuth, logout } from "../slices/authSlice";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import NavBarCategories from "./NavBarCategories";
 
 const Header = () => {
   const { cartItems } = useSelector(selectCart);
@@ -151,144 +151,6 @@ const Header = () => {
           </LinkContainer>
         </Container>
       </Navbar>
-      <div className="nav-menu">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <ul className="navbar-nav navbar-menu">
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle nav-menu-link"
-                href="#"
-                id="womenDropdown"
-                role="button"
-                data-toggle="dropdown"
-              >
-                Men
-              </a>
-              <div className="dropdown-menu">
-                <a className="dropdown-item" href="/women/item1">
-                  Item 1
-                </a>
-                <a className="dropdown-item" href="/women/item2">
-                  Item 2
-                </a>
-                <a className="dropdown-item" href="/women/item3">
-                  Item 3
-                </a>
-              </div>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle nav-menu-link"
-                href="#"
-                id="womenDropdown"
-                role="button"
-                data-toggle="dropdown"
-              >
-                Women
-              </a>
-              <div className="dropdown-menu">
-                <a className="dropdown-item" href="/women/item1">
-                  Item 1
-                </a>
-                <a className="dropdown-item" href="/women/item2">
-                  Item 2
-                </a>
-                <a className="dropdown-item" href="/women/item3">
-                  Item 3
-                </a>
-              </div>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle nav-menu-link"
-                href="#"
-                id="womenDropdown"
-                role="button"
-                data-toggle="dropdown"
-              >
-                Packs & bags
-              </a>
-              <div className="dropdown-menu">
-                <a className="dropdown-item" href="/women/item1">
-                  Item 1
-                </a>
-                <a className="dropdown-item" href="/women/item2">
-                  Item 2
-                </a>
-                <a className="dropdown-item" href="/women/item3">
-                  Item 3
-                </a>
-              </div>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle nav-menu-link"
-                href="#"
-                id="womenDropdown"
-                role="button"
-                data-toggle="dropdown"
-              >
-                Tents
-              </a>
-              <div className="dropdown-menu">
-                <a className="dropdown-item" href="/women/item1">
-                  Item 1
-                </a>
-                <a className="dropdown-item" href="/women/item2">
-                  Item 2
-                </a>
-                <a className="dropdown-item" href="/women/item3">
-                  Item 3
-                </a>
-              </div>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle nav-menu-link"
-                href="#"
-                id="womenDropdown"
-                role="button"
-                data-toggle="dropdown"
-              >
-                Equipment
-              </a>
-              <div className="dropdown-menu">
-                <a className="dropdown-item" href="/women/item1">
-                  Item 1
-                </a>
-                <a className="dropdown-item" href="/women/item2">
-                  Item 2
-                </a>
-                <a className="dropdown-item" href="/women/item3">
-                  Item 3
-                </a>
-              </div>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle nav-menu-link"
-                href="#"
-                id="womenDropdown"
-                role="button"
-                data-toggle="dropdown"
-              >
-                Accessories
-              </a>
-              <div className="dropdown-menu">
-                <a className="dropdown-item" href="/women/item1">
-                  Item 1
-                </a>
-                <a className="dropdown-item" href="/women/item2">
-                  Item 2
-                </a>
-                <a className="dropdown-item" href="/women/item3">
-                  Item 3
-                </a>
-              </div>
-            </li>
-          </ul>
-        </nav>
-      </div>
     </header>
   );
 };

@@ -11,7 +11,7 @@ const Testimonial = () => {
               className="d-block avatar"
               alt="..."
             />
-            <h4>jhon smith</h4>
+            <h4>John Smith</h4>
             <div className="rating">
               <span className="star">
                 <i className="bi bi-star-fill"></i>
@@ -42,7 +42,7 @@ const Testimonial = () => {
               className="d-block avatar"
               alt="..."
             />
-            <h4>jhon smith</h4>
+            <h4>Ahmed Elmensouri</h4>
             <div className="rating">
               <span className="star">
                 <i className="bi bi-star-fill"></i>
@@ -73,7 +73,7 @@ const Testimonial = () => {
               className="d-block avatar"
               alt="..."
             />
-            <h4>jhon smith</h4>
+            <h4>John Smith</h4>
             <div className="rating">
               <span className="star">
                 <i className="bi bi-star-fill"></i>

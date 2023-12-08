@@ -30,6 +30,13 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Product"],
     }),
+    filterProducts: builder.query({
+      query: (filterOption) => ({
+        url: `${PRODUCTS_URL}/filter`,
+        params: filterOption,
+      }),
+      keepUnusedDataFor: 2,
+    }),
   }),
 });
 
@@ -38,4 +45,5 @@ export const {
   useGetProductsQuery,
   useGetProductDetailsQuery,
   useCreateProductReviewMutation,
+  useFilterProductsQuery,
 } = productsApiSlice;
