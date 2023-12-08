@@ -34,14 +34,20 @@ const productSchema = new Schema(
       ref: "User",
     },
 
+    category: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "Category",
+    },
+
     name: {
       type: String,
       required: true,
     },
 
     image: {
-      type: String,
-      required: true,
+      type: Array,
+      required: false,
     },
 
     price: {
@@ -49,17 +55,8 @@ const productSchema = new Schema(
       require: true,
     },
 
-    brand: {
-      type: String,
-      required: true,
-    },
-
-    size: {
-      type: String,
-    },
-    category: {
-      type: String,
-      required: true,
+    sizes: {
+      type: Array,
     },
 
     description: {
