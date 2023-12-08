@@ -10,7 +10,6 @@ import Testimonial from "../components/Testimonial";
 import Value from "../components/Value";
 import { useNavigate } from "react-router-dom";
 
-
 const HomeScreen = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
   const navigate = useNavigate();
