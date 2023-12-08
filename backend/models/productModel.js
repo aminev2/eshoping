@@ -65,7 +65,7 @@ const productSchema = new Schema(
     sizes: {
       type: Array,
     },
-     
+    
     description: {
       type: String,
       required: true,

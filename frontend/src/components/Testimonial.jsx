@@ -1,6 +1,8 @@
 const Testimonial = () => {
   return (
     <section className="testimonial">
+      <h1 className="title">Testimonial</h1>
+      <span className="line-title"></span>
       <div id="carouselExample" className="carousel-testimonial carousel slide">
         <div className="carousel-inner container">
           <div className="carousel-item carousel-item-testi active">

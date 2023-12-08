@@ -112,12 +112,12 @@ const ProfileScreen = () => {
     },
   ];
   return (
+    <div className="profile cb">
+    <div className="container pt-4">
     <Row>
       <Col md={3}>
-        <h2>User Profile</h2>
-
-        <Image src="/favicon.png" roundedCircle width={"50px"} />
-
+        <Image className="center-item img-profile" src="/favicon.png" roundedCircle width={"50px"} />
+        <h3 className="text-center">{userInfo?.name}</h3>
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="email" className="my-2">
             <Form.Label>Name</Form.Label>
@@ -188,6 +188,8 @@ const ProfileScreen = () => {
         )}
       </Col>
     </Row>
+    </div>
+    </div>
   );
 };
 
