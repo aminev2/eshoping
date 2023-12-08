@@ -6,7 +6,8 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Form, Image, Button, Row, Col } from "react-bootstrap";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import BootstrapTable from "react-bootstrap-table-next";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaTruckMoving } from "react-icons/fa";
+import { TbTruckDelivery } from "react-icons/tb";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { toast } from "react-toastify";
@@ -78,7 +79,19 @@ const ProfileScreen = () => {
           <FaTimes style={{ color: "red", textAlign: "center" }}></FaTimes>
         ),
     },
-    { dataField: "isDelivered", text: "DELIVERED" },
+    {
+      dataField: "isDelivered",
+      text: "DELIVERED",
+      formatter: (cell, row) =>
+        row.isDelivered ? (
+          row.deliveredAt?.substring(0, 10)
+        ) : (
+          <TbTruckDelivery
+            style={{ color: "red", textAlign: "center" }}
+            size={25}
+          ></TbTruckDelivery>
+        ),
+    },
     {
       dataField: "details",
       text: "INFO",
