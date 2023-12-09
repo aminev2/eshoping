@@ -121,6 +121,37 @@ const getOrders = asyncHandler(async (req, res) => {
   res.json(orders);
 });
 
+//! @desc Get Orders count by day
+// @route GET /api/orders/count-by-day
+// @access Private/Admin
+const getOrderCountByDay = asyncHandler(async (req, res) => {
+  const orderCountByDay = await Order.aggregate([
+    {
+      $group: {
+        _id: {
+          day: { $dayOfYear: "$createdAt" },
+          year: { $year: "$createdAt" },
+        },
+        count: { $sum: 1 },
+        total: { $sum: "$totalPrice" },
+      },
+    },
+    {
+      $sort: {
+        "_id.year": 1,
+        "_id.day": 1,
+      },
+    },
+  ]);
+
+  if (!orderCountByDay) {
+    res.status(404);
+    throw new Error("No data found");
+  }
+
+  return res.status(200).json(orderCountByDay);
+});
+
 export {
   addOrderItems,
   getOrders,
@@ -128,4 +159,5 @@ export {
   getOrderById,
   updateOrderToDelivered,
   updateOrderToPaid,
+  getOrderCountByDay,
 };
