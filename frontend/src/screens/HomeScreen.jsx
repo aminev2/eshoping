@@ -50,10 +50,10 @@ const HomeScreen = () => {
           <source src="https://res.cloudinary.com/doye6tvxz/video/upload/v1701812558/background2-video_online-video-cutter.com_rztuey.mp4" type="video/mp4" />
         </video>
         <div className="content-video">
-        <h1>Welcome to Advenshop</h1>
-        <p>Find the best outdoor gear for your next adventure</p>
+        <h1 className="text-center">Welcome to Advenshop</h1>
+        <p className="text-center">Find the best outdoor gear for your next adventure</p>
         
-        <button className="btn btn-primary" onClick={()=>navigate("/products")}>Shop Now</button>
+        <button className="btn-header btn btn-primary" onClick={()=>navigate("/products")}>Shop Now</button>
         </div>
       </div>
       </div>
@@ -63,7 +63,7 @@ const HomeScreen = () => {
         <h2 className="title">Why Choose Us</h2>
             <span className="line-title"></span>
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-6 col-lg-4">
               <div className="choose-item">
                 <i className="bi bi-diagram-3"></i>
                 <h4>Expertly Curated Selection</h4>
@@ -74,7 +74,7 @@ const HomeScreen = () => {
                 </p>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-6 col-lg-4">
               <div className="choose-item">
                 <i className="bi bi-tree"></i>
                 <h4>Passion for Adventure</h4>
@@ -85,7 +85,7 @@ const HomeScreen = () => {
                 </p>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-12  col-lg-4" >
               <div className="choose-item">
                 <i className="bi bi-nut"></i>
                 <h4>Centric Approach</h4>
@@ -117,7 +117,7 @@ const HomeScreen = () => {
               <Row>
                 {products?.slice(0, 4).map((product) => {
                   return (
-                    <Col key={product._id} sm={12} md={4} lg={3} lx={3}>
+                    <Col key={product._id} sm={6} md={4} lg={3} lx={3}>
                       <Product className="product" product={product}>
                         {
                           <OffCanvasCartScreen
