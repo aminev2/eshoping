@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Product from "../models/productModel.js";
 
@@ -7,15 +8,18 @@ import Product from "../models/productModel.js";
 const createProduct = asyncHandler(async (req, res) => {
   const { name, price, category, description } = req.body;
 
-  const image = req.files ? req.files.map((file) => file.path) : null;
+  const image = (await req.files) ? req.files.map((file) => file.path) : null;
+  console.log("req files ", req.files);
   console.log("req file ", req.file);
-
+  console.log("name ", name);
+  console.log("price ", price);
+  console.log("image ", image);
   const product = new Product({
     name,
     price,
     user: req?.user?._id,
     image,
-    category,
+    category: new mongoose.Types.ObjectId(category),
     countInStock: 5,
     description,
   });
@@ -75,20 +79,20 @@ const getProductCountByDay = asyncHandler(async (req, res) => {
   return res.status(200).json(productCountByDay);
 });
 
-//! @desc Delete product 
+//! @desc Delete product
 // @route DELETE /api/products/:id
 // @access Private/Admin
 const deleteCategory = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
-if (product) {
-  await Product.deleteOne({_id: product.id});
-  res.json({ message: 'Product removed' });
-}else{
-  throw new Error('Product not found');
-}
-})
+  if (product) {
+    await Product.deleteOne({ _id: product.id });
+    res.json({ message: "Product removed" });
+  } else {
+    throw new Error("Product not found");
+  }
+});
 
-//! @desc Update product 
+//! @desc Update product
 // @route UPDATE /api/products/:id
 // @access Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
@@ -114,10 +118,15 @@ const updateProduct = asyncHandler(async (req, res) => {
     const updatedProduct = await existingProduct.save();
     res.status(200).json(updatedProduct);
   } else {
-    res.status(404).json({ message: 'Product not found' });
+    res.status(404).json({ message: "Product not found" });
   }
 });
 
-
-
-export { getProducts, getProductById, getProductCountByDay, createProduct, deleteCategory, updateProduct };
+export {
+  getProducts,
+  getProductById,
+  getProductCountByDay,
+  createProduct,
+  deleteCategory,
+  updateProduct,
+};

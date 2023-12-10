@@ -5,7 +5,7 @@ import {
   getProductCountByDay,
   createProduct,
   deleteCategory,
-  updateProduct
+  updateProduct,
 } from "../controllers/productController.js";
 import { protect, admin } from "../middlewares/authMiddleware.js";
 import { upload } from "../utils/uploadImages.js";
