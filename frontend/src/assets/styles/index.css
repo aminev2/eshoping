@@ -104,8 +104,9 @@ section {
 .cart2 {
   position: absolute !important;
   color: #fff;
-  right: 20%;
-  top: 26px;
+  right: 50vw;
+  top: 20px;
+  margin-right: -40px;
 }
 
 .cart2:hover {
@@ -358,6 +359,10 @@ section.categories {
   margin-bottom: 10px;
 }
 
+.social {
+  margin-right: 10px;
+}
+
 /*--------------- Page Home -----------------*/
 
 .choose-item {
@@ -432,7 +437,7 @@ th {
   position: absolute;
   width: 100%;
   object-fit: cover;
-  height: 400px;
+  height: 450px;
 }
 
 

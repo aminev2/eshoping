@@ -48,6 +48,7 @@ const LoginScreen = () => {
   };
 
   return (
+    <div className="cb">
     <FormContainer>
       <h1>Login in</h1>
 
@@ -95,6 +96,7 @@ const LoginScreen = () => {
         </Row>
       </Form>
     </FormContainer>
+    </div>
   );
 };
 
