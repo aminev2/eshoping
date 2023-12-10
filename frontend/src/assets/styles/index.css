@@ -4,7 +4,7 @@
   --form-range-thumb-active-bg: #fe4749 !important;
   --speechify-primary-color: #fe4749 !important;
   --bs-list-group-active-bg: #fe4749 !important;
-  --bs-list-group-active-border-color: #fe4749 !important;  
+  --bs-list-group-active-border-color: #fe4749 !important;
 }
 
 .cb {
@@ -172,6 +172,25 @@ a.cart2.active.nav-link {
   background-image: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1701178029/nasim-dadfar-w28Ei0Ap96w-unsplash_cxu5bx.jpg);
 }
 
+/*? Styling  React Elastic Carousel  */
+.rec.rec-arrow {
+  background-color: #fe4749;
+  color: white;
+}
+
+.rec.rec-arrow:hover {
+  background-color: #fe4749 !important;
+  color: white;
+}
+.rec.rec-arrow:disabled {
+  visibility: hidden;
+}
+
+.rec-carousel-item:focus {
+  outline: none;
+  background-color: #fe4749 !important;
+  box-shadow: inset 0 0 1px 1px lightgrey;
+}
 /*--------------- Home Page -----------------*/
 
 .top {
@@ -209,8 +228,6 @@ a.cart2.active.nav-link {
   height: 165px;
   object-fit: contain;
 }
-
-
 
 /*--------------- Categories -----------------*/
 
@@ -445,8 +462,6 @@ th {
   height: 450px;
 }
 
-
-
 /* .content-video {
   position: absolute;
   display: flex;
@@ -468,8 +483,8 @@ th {
 }
 
 .btn-header {
-    margin: 0 auto;
-    display: block;
+  margin: 0 auto;
+  display: block;
 }
 
 .content-video h1 {
@@ -606,7 +621,6 @@ th {
 
 /*--------------- Page profile -----------------*/
 
-
 /*--------------- Season -----------------*/
 
 .season {
@@ -634,12 +648,6 @@ th {
 .photo-season h2 {
   font-weight: 600;
 }
-
-
-
-
-
-
 
 @media (max-width: 768px) {
   .cart1 {
