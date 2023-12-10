@@ -1,5 +1,4 @@
 import { Router } from "express";
-const router = Router();
 import {
   registerUser,
   loginUser,
@@ -13,9 +12,8 @@ import {
   resetUserPassword,
 } from "../controllers/userController.js";
 import { admin, protect } from "../middlewares/authMiddleware.js";
-
 import { rateLimit } from "express-rate-limit";
-
+const router = Router();
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   limit: 5, // Limit each IP to 100 requests per `window` (here, per 15 minutes)

@@ -39,11 +39,12 @@ const NavBarCategories = ({ categories, products }) => {
                               to={`/products/${product._id}`}
                             >
                               <Image
-                                src={product.image}
-                                width={"25px"}
+                                src={product?.image?.[0]}
+                                width={"30px"}
+                                alt={product.name}
                                 rounded
                               ></Image>{" "}
-                              {product.name.substring(0, 50)}
+                              {product.name.toUpperCase().substring(0, 50)}
                             </Link>
                           </>
                         );

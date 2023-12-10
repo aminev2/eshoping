@@ -1,18 +1,16 @@
 import React, { Fragment, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import Pagination from "react-bootstrap/Pagination";
+import Carousel from "react-bootstrap/Carousel";
 import {
   Row,
   Col,
   Image,
   ListGroup,
   Card,
-  ButtonGroup,
   Button,
   Form,
 } from "react-bootstrap";
 import Rating from "../components/Rating";
-
 import {
   useGetProductDetailsQuery,
   useCreateProductReviewMutation,
@@ -87,7 +85,19 @@ const ProductScreen = () => {
         <>
           <Row>
             <Col md={5}>
-              <Image src={product.image} alt={product.image} fluid></Image>
+              <Carousel
+                className="text-center "
+                indicators={false}
+                variant="dark"
+              >
+                {product?.image?.map((img) => {
+                  return (
+                    <Carousel.Item key={product._id}>
+                      <Image src={img} alt={img} fluid></Image>
+                    </Carousel.Item>
+                  );
+                })}
+              </Carousel>
             </Col>
             <Col md={4}>
               <ListGroup variant="flush">
@@ -115,39 +125,7 @@ const ProductScreen = () => {
                       </Col>
                     </Row>
                   </ListGroup.Item>
-                  {product?.sizes && (
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Sizes:</Col>
 
-                        <Col>
-                          <ButtonGroup>
-                            {product?.sizes &&
-                              product.sizes.map((productSize) => {
-                                return (
-                                  <>
-                                    <Button
-                                      key={productSize}
-                                      size={"sm"}
-                                      className={`mx-1 ${
-                                        activeSize === productSize
-                                          ? "active"
-                                          : ""
-                                      }`}
-                                      onClick={() =>
-                                        handleSizeClick(productSize)
-                                      }
-                                    >
-                                      {productSize}
-                                    </Button>
-                                  </>
-                                );
-                              })}
-                          </ButtonGroup>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                  )}
                   {product?.countInStock >= 1 && (
                     <ListGroup.Item>
                       <Row className="text-center">
