@@ -55,6 +55,7 @@ const RegisterScreen = () => {
   };
 
   return (
+    <div className="cb">
     <FormContainer>
       <h1>Register</h1>
 
@@ -123,6 +124,7 @@ const RegisterScreen = () => {
         </Row>
       </Form>
     </FormContainer>
+    </div>
   );
 };  
 

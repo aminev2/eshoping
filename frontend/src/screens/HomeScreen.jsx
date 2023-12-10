@@ -14,7 +14,12 @@ import Testimonial from "../components/Testimonial";
 import Value from "../components/Value";
 import NavBarCategories from "../components/NavBarCategories";
 import { useGetAllCategoriesQuery } from "../slices/categoriesApiSlice";
+
 import ChooseUs from "../components/ChooseUs";
+
+import SeasonSection from "../components/SeasonSection";
+import HeaderVideo from "../components/HeaderVideo";
+
 
 const HomeScreen = () => {
   const {
@@ -49,31 +54,13 @@ const HomeScreen = () => {
           products={products}
         ></NavBarCategories>
       )}
-
-      <div className="header-video">
-        <div className="video-container">
-          <video className="background-video" autoPlay loop muted>
-            <source
-              src="https://res.cloudinary.com/doye6tvxz/video/upload/v1701812558/background2-video_online-video-cutter.com_rztuey.mp4"
-              type="video/mp4"
-            />
-          </video>
-          <div className="content-video">
-            <h1>Welcome to Advenshop</h1>
-            <p>Find the best outdoor gear for your next adventure</p>
-
-            <button
-              className="btn btn-primary"
-              onClick={() => navigate("/products")}
-            >
-              Shop Now
-            </button>
-          </div>
-        </div>
-      </div>
+    
+      <HeaderVideo />
+      <SeasonSection />
 
       <ChooseUs></ChooseUs>
       <Categories />
+        
       <div className="container">
         <div className="last-posts">
           {isLoadingProducts ? (
@@ -88,6 +75,7 @@ const HomeScreen = () => {
             <section className="last-products">
               <h2 className="title">Latest products</h2>
               <span className="line-title"></span>
+
               <Row className="text-center">
                 <Carousel indicators={false} variant="dark" interval={2500}>
                   <Carousel.Item>
@@ -138,11 +126,12 @@ const HomeScreen = () => {
                     Show more
                   </Button>
                 </Col>
-              </Row>
+
             </section>
           )}
         </div>
       </div>
+
       <Testimonial />
       <Value />
       <button

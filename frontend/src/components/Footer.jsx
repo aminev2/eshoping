@@ -3,11 +3,10 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 const Footer = () => {
   return (
     <>
-
     <footer className="footer">
       <div className="container">
         <div className="row">
-          <div className="col-md-4">
+          <div className="col-md-12 col-lg-4">
             <h3>About us</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
@@ -16,7 +15,7 @@ const Footer = () => {
               molestiae commodi esse alias qui.
             </p>
             </div>
-            <div className="col-md-2">
+            <div className="col-sm-6 col-md-4 col-lg-2 mb-3">
             <h3>Links</h3>
                 <li>
                   <a href="lien">Home</a>
@@ -31,25 +30,25 @@ const Footer = () => {
                   <a href="lien">Contact</a>
                 </li>
             </div>
-            <div className="col-md-2 footer-icones">
+            <div className="col-sm-6 col-md-4 col-lg-2 footer-icones mb-3">
             <h3>Follow us</h3>
-                <li className='social'>
+                <span className='social'>
                   <a href="lien">
                     <i className="bi bi-facebook"></i>
                   </a>
-                </li>
-                <li className='social'>
+                </span>
+                <span className='social'>
                   <a href="lien">
                     <i className="bi bi-twitter"></i>
                   </a>
-                </li>
-                <li className='social'>
+                </span>
+                <span className='social'>
                   <a href="lien">
                     <i className="bi bi-instagram"></i>
                   </a>
-                </li>
+                </span>
             </div>
-            <div className="col-md-4 contact-footer footer-icones">
+            <div className="col-md-4 col-lg-4 contact-footer footer-icones">
             <h3>Contact us</h3>
                 <li>
                   <i className="bi bi-geo-alt-fill"></i> 123 rue de la paix
