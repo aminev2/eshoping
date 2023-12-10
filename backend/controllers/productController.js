@@ -62,7 +62,8 @@ const createProduct = asyncHandler(async (req, res) => {
 // @access Public
 
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({ createdAt: "asc" });
+  //?  Descending the newest products will appear first in the sorted list.
+  const products = await Product.find({}).sort({ createdAt: "desc" });
   if (products) {
     res.status(200).json(products);
   } else {
