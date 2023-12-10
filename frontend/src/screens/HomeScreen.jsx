@@ -1,14 +1,13 @@
-import React, { useEffect } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { addToCart, selectCart } from "../slices/cartSlice";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import Product from "../components/Product";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import OffCanvasCartScreen from "../screens/OffCanvasCartScreen";
-import Carousel from "react-bootstrap/Carousel";
+import Carousel from "react-elastic-carousel";
 import Categories from "../components/Categories";
 import Testimonial from "../components/Testimonial";
 import Value from "../components/Value";
@@ -20,7 +19,6 @@ import ChooseUs from "../components/ChooseUs";
 import SeasonSection from "../components/SeasonSection";
 import HeaderVideo from "../components/HeaderVideo";
 
-
 const HomeScreen = () => {
   const {
     data: products,
@@ -28,17 +26,18 @@ const HomeScreen = () => {
     error,
     refetch,
   } = useGetProductsQuery();
+
   const {
     data: categories,
     isLoading: isLoadingCategories,
     error: categoriesError,
     refetch: refetchCategories,
   } = useGetAllCategoriesQuery();
+
   // Redux hooks for accessing state and dispatching actions
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const cart = useSelector(selectCart);
-  const { cartItems } = cart;
 
   // Handles the addition of a product to the shopping cart.
 
@@ -54,13 +53,14 @@ const HomeScreen = () => {
           products={products}
         ></NavBarCategories>
       )}
-    
+
       <HeaderVideo />
+
       <SeasonSection />
 
       <ChooseUs></ChooseUs>
       <Categories />
-        
+
       <div className="container">
         <div className="last-posts">
           {isLoadingProducts ? (
@@ -77,48 +77,36 @@ const HomeScreen = () => {
               <span className="line-title"></span>
 
               <Row className="text-center">
-                <Carousel indicators={false} variant="dark" interval={2500}>
-                  <Carousel.Item>
-                    <Row>
-                      {products?.slice(0, 4).map((product) => {
-                        return (
-                          <Col key={product._id} sm={12} md={4} lg={3} lx={3}>
-                            <Product className="product" product={product}>
-                              {
-                                <OffCanvasCartScreen
-                                  disabled={product.countInStock <= 0}
-                                  onClick={() => addToCartHandler(product, 1)}
-                                >
-                                  add to cart
-                                </OffCanvasCartScreen>
-                              }
-                            </Product>
-                          </Col>
-                        );
-                      })}
-                    </Row>
-                  </Carousel.Item>
-
-                  <Carousel.Item>
-                    <Row>
-                      {products?.slice(0, 4).map((product) => {
-                        return (
-                          <Col key={product._id} sm={12} md={4} lg={3} lx={3}>
-                            <Product className="product" product={product}>
-                              {
-                                <OffCanvasCartScreen
-                                  disabled={product.countInStock <= 0}
-                                  onClick={() => addToCartHandler(product, 1)}
-                                >
-                                  add to cart
-                                </OffCanvasCartScreen>
-                              }
-                            </Product>
-                          </Col>
-                        );
-                      })}
-                    </Row>
-                  </Carousel.Item>
+                <Carousel
+                  enableAutoPlay={true}
+                  enableMouseSwipe
+                  enableSwipe
+                  pagination={false}
+                  breakPoints={[
+                    { width: 320, itemsToShow: 1 },
+                    { width: 576, itemsToShow: 2 },
+                    { width: 768, itemsToShow: 3 },
+                    { width: 992, itemsToShow: 4 },
+                    { width: 1200, itemsToShow: 5 },
+                    { width: 1400, itemsToShow: 6 },
+                  ]}
+                >
+                  {products?.slice(0, 10).map((product) => {
+                    return (
+                      <Col key={product._id}>
+                        <Product className="product" product={product}>
+                          {
+                            <OffCanvasCartScreen
+                              disabled={product.countInStock <= 0}
+                              onClick={() => addToCartHandler(product, 1)}
+                            >
+                              add to cart
+                            </OffCanvasCartScreen>
+                          }
+                        </Product>
+                      </Col>
+                    );
+                  })}
                 </Carousel>
 
                 <Col>

@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Nav, Container, Badge, NavDropdown } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Container,
+  Badge,
+  NavDropdown,
+  Form,
+  Button,
+} from "react-bootstrap";
 import { FaCartShopping, FaUser } from "react-icons/fa6";
 import { LinkContainer } from "react-router-bootstrap"; //need it
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCart } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { selectAuth, logout } from "../slices/authSlice";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import NavBarCategories from "./NavBarCategories";
-
+import { useLocation } from "react-router-dom";
+import { BiSearchAlt } from "react-icons/bi";
 const Header = () => {
   const { cartItems } = useSelector(selectCart);
   const { userInfo } = useSelector(selectAuth);
+  const [search, setSearch] = useState();
+  const location = useLocation();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [logoutApiCall] = useLogoutMutation();
@@ -45,9 +54,6 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-n av">
             <Nav className="me-auto">
-              <LinkContainer to="/">
-                <Nav.Link>Home</Nav.Link>
-              </LinkContainer>
               <LinkContainer to="/products">
                 <Nav.Link>Shop</Nav.Link>
               </LinkContainer>
@@ -58,6 +64,28 @@ const Header = () => {
                 <Nav.Link>About</Nav.Link>
               </LinkContainer>
             </Nav>
+            {location.pathname !== "/products" && (
+              <div className="d-flex m-auto">
+                <Form.Control
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                  defaultValue={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <Button
+                  variant="outline-success"
+                  onClick={() =>
+                    navigate("/products", {
+                      state: { search },
+                    })
+                  }
+                >
+                  <BiSearchAlt></BiSearchAlt>
+                </Button>
+              </div>
+            )}
             <Nav className="ms-auto">
               <LinkContainer
                 className="cart1"

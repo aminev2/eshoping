@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 const HeaderVideo = () => {
   const navigate = useNavigate();
   return (
@@ -10,18 +11,15 @@ const HeaderVideo = () => {
             type="video/mp4"
           />
         </video>
-        <div className="content-video">
+
+        <div className="content-video text-center">
           <h1 className="text-center">Welcome to Advenshop</h1>
+
           <p className="text-center">
             Find the best outdoor gear for your next adventure
           </p>
 
-          <button
-            className="btn-header btn btn-primary"
-            onClick={() => navigate("/products")}
-          >
-            Shop Now
-          </button>
+          <Button onClick={() => navigate("/products")}>Shop Now</Button>
         </div>
       </div>
     </div>
