@@ -40,10 +40,11 @@ const NavBarCategories = ({ categories, products }) => {
                             >
                               <Image
                                 src={product?.image?.[0]}
-                                width={"25px"}
+                                width={"30px"}
+                                alt={product.name}
                                 rounded
                               ></Image>{" "}
-                              {product.name.substring(0, 50)}
+                              {product.name.toUpperCase().substring(0, 50)}
                             </Link>
                           </>
                         );

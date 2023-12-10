@@ -72,7 +72,7 @@ const CartScreen = () => {
                         <Col md={2}>
                           <Image
                             src={item.image?.[0]}
-                            alt={item.name}
+                            alt={item.name.toUpperCase()}
                             fluid
                             rounded
                           ></Image>

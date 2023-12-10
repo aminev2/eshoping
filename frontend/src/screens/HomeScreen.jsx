@@ -17,7 +17,12 @@ import { useGetAllCategoriesQuery } from "../slices/categoriesApiSlice";
 import ChooseUs from "../components/ChooseUs";
 
 const HomeScreen = () => {
-  const { data: products, isLoading, error, refetch } = useGetProductsQuery();
+  const {
+    data: products,
+    isLoading: isLoadingProducts,
+    error,
+    refetch,
+  } = useGetProductsQuery();
   const {
     data: categories,
     isLoading: isLoadingCategories,
@@ -38,7 +43,7 @@ const HomeScreen = () => {
 
   return (
     <>
-      {!isLoading && (
+      {!isLoadingCategories && !isLoadingProducts && (
         <NavBarCategories
           categories={categories}
           products={products}
@@ -71,7 +76,7 @@ const HomeScreen = () => {
       <Categories />
       <div className="container">
         <div className="last-posts">
-          {isLoading ? (
+          {isLoadingProducts ? (
             <Loader></Loader>
           ) : error ? (
             <Message variant={"danger"} className={"text-center"}>
@@ -83,8 +88,8 @@ const HomeScreen = () => {
             <section className="last-products">
               <h2 className="title">Latest products</h2>
               <span className="line-title"></span>
-              <Row>
-                <Carousel indicators={false} variant="dark">
+              <Row className="text-center">
+                <Carousel indicators={false} variant="dark" interval={2500}>
                   <Carousel.Item>
                     <Row>
                       {products?.slice(0, 4).map((product) => {
@@ -126,27 +131,13 @@ const HomeScreen = () => {
                       })}
                     </Row>
                   </Carousel.Item>
-                  <Carousel.Item>
-                    <Row>
-                      {products?.slice(0, 4).map((product) => {
-                        return (
-                          <Col key={product._id} sm={12} md={4} lg={3} lx={3}>
-                            <Product className="product" product={product}>
-                              {
-                                <OffCanvasCartScreen
-                                  disabled={product.countInStock <= 0}
-                                  onClick={() => addToCartHandler(product, 1)}
-                                >
-                                  add to cart
-                                </OffCanvasCartScreen>
-                              }
-                            </Product>
-                          </Col>
-                        );
-                      })}
-                    </Row>
-                  </Carousel.Item>
                 </Carousel>
+
+                <Col>
+                  <Button onClick={() => navigate("/products")}>
+                    Show more
+                  </Button>
+                </Col>
               </Row>
             </section>
           )}

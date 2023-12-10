@@ -12,7 +12,7 @@ const Product = ({ product, children }) => {
       <Card.Body>
         <Link to={`/products/${product._id}`}>
           <Card.Title as="h3" className="product-title">
-            <strong>{product.name}</strong>
+            <strong>{product?.name?.toUpperCase()}</strong>
           </Card.Title>
         </Link>
         <Card.Text as="div">
