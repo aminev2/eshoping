@@ -20,7 +20,7 @@ function OffCanvasCartScreen({ disabled, onClick }) {
         }}
         className="me-2"
       >
-        Add to cart
+      Add to cart
       </Button>
       <Offcanvas show={show} onHide={handleClose} backdrop={true} scroll>
         <Offcanvas.Header closeButton>

@@ -100,6 +100,7 @@ function FilterProductsScreen() {
                     />
                   </ListGroup.Item>
                 )}
+                {/* *Todo: don't show categories if empty */}
                 {!isLoadingCategories &&
                   !categoriesError &&
                   categories?.map((category) => {
@@ -113,7 +114,7 @@ function FilterProductsScreen() {
                           label={`${category.name} (${
                             allProducts?.filter(
                               (product) => product.category === category._id
-                            ).length || 0
+                            ).length || 0 
                           })`}
                           value={category._id}
                           name="category"

@@ -39,7 +39,7 @@ const NavBarCategories = ({ categories, products }) => {
                               to={`/products/${product._id}`}
                             >
                               <Image
-                                src={product.image}
+                                src={product?.image?.[0]}
                                 width={"25px"}
                                 rounded
                               ></Image>{" "}

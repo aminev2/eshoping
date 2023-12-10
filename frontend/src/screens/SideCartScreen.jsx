@@ -66,7 +66,7 @@ const SideCartScreen = () => {
                       <Col md={4}>
                         <Link to={`/products/${item._id}`}>
                           <Image
-                            src={item.image}
+                            src={item?.image?.[0]}
                             alt={item.name}
                             fluid
                             rounded
