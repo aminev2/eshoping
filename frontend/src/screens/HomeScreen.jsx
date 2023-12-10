@@ -14,6 +14,8 @@ import Testimonial from "../components/Testimonial";
 import Value from "../components/Value";
 import NavBarCategories from "../components/NavBarCategories";
 import { useGetAllCategoriesQuery } from "../slices/categoriesApiSlice";
+import SeasonSection from "../components/SeasonSection";
+import HeaderVideo from "../components/HeaderVideo";
 
 const HomeScreen = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
@@ -43,55 +45,8 @@ const HomeScreen = () => {
           products={products}
         ></NavBarCategories>
       )}
-
-      <div className="header-video">
-        <div className="video-container">
-          <video className="background-video" autoPlay loop muted>
-            <source
-              src="https://res.cloudinary.com/doye6tvxz/video/upload/v1701812558/background2-video_online-video-cutter.com_rztuey.mp4"
-              type="video/mp4"
-            />
-          </video>
-          <div className="content-video">
-            <h1 className="text-center">Welcome to Advenshop</h1>
-            <p className="text-center">
-              Find the best outdoor gear for your next adventure
-            </p>
-
-            <button
-              className="btn-header btn btn-primary"
-              onClick={() => navigate("/products")}
-            >
-              Shop Now
-            </button>
-          </div>
-        </div>
-      </div>
-      <section className="season">
-        <div className="back-season">
-          <div className="container">
-            <h2 className="title-season">Seasonal Picks</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis,
-              vitae?
-            </p>
-        </div>
-        </div>
-        <div className="container">
-        <div className="row season-items">
-          <div className="col-md-6 col-lg-4 photo-season">
-            <h3>Name product</h3>
-          </div>
-          <div className="col-md-6 col-lg-4 photo-season">
-            <h3>Name product</h3>
-          </div>
-          <div className="col-md-6 col-lg-4 photo-season">
-            <h3>Name product</h3>
-          </div>
-        
-        </div>
-        </div>
-      </section>
+      <HeaderVideo />
+      <SeasonSection />
 
       <section className="choose-us">
         <div className="container">
