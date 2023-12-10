@@ -126,7 +126,7 @@ const HomeScreen = () => {
                     Show more
                   </Button>
                 </Col>
-
+              </Row>
             </section>
           )}
         </div>
