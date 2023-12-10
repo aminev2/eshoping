@@ -601,6 +601,35 @@ th {
 
 /*--------------- Page profile -----------------*/
 
+/*--------------- Season -----------------*/
+
+.season {
+  padding: 0;
+}
+
+.back-season {
+  padding: 10% 0;
+  background: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1702214777/marco-pregnolato-ahYX46whD8s-unsplash_1_gl8sml.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.photo-season {
+  background: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1702223321/man-hiking-up-a-snowy-mountain-corey-rich_ovf5l1.jpg);
+  padding: 10% 0;
+}
+
+.photo-season {
+  background-size: cover;
+  color: #fff;
+  border: solid 5px #fff;
+}
+
+.photo-season h2 {
+  font-weight: 600;
+}
+
+
 
 
 
