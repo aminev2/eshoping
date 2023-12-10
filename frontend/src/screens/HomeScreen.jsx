@@ -20,7 +20,6 @@ import ChooseUs from "../components/ChooseUs";
 import SeasonSection from "../components/SeasonSection";
 import HeaderVideo from "../components/HeaderVideo";
 
-
 const HomeScreen = () => {
   const {
     data: products,
@@ -28,17 +27,18 @@ const HomeScreen = () => {
     error,
     refetch,
   } = useGetProductsQuery();
+
   const {
     data: categories,
     isLoading: isLoadingCategories,
     error: categoriesError,
     refetch: refetchCategories,
   } = useGetAllCategoriesQuery();
+
   // Redux hooks for accessing state and dispatching actions
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const cart = useSelector(selectCart);
-  const { cartItems } = cart;
 
   // Handles the addition of a product to the shopping cart.
 
@@ -54,13 +54,14 @@ const HomeScreen = () => {
           products={products}
         ></NavBarCategories>
       )}
-    
+
       <HeaderVideo />
+
       <SeasonSection />
 
       <ChooseUs></ChooseUs>
       <Categories />
-        
+
       <div className="container">
         <div className="last-posts">
           {isLoadingProducts ? (

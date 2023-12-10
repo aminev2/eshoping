@@ -22,7 +22,6 @@ import { addToCart, removeFromCart, selectCart } from "../slices/cartSlice";
 const SideCartScreen = () => {
   // React Router hook for navigation
   const navigate = useNavigate();
-
   // Redux hooks for accessing state and dispatching actions
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);

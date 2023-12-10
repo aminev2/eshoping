@@ -37,7 +37,9 @@ function FilterProductsScreen() {
     location?.state?.category ?? location?.state?.category
   );
   const [rating, setRating] = useState();
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState(
+    location?.state?.search ?? location?.state?.search
+  );
   const [hideRating, setHideRating] = useState(false);
   const [hidePricing, setHidePricing] = useState(false);
   const [hideCategorizing, setHideCategorizing] = useState(false);
@@ -77,9 +79,10 @@ function FilterProductsScreen() {
                   placeholder="Search"
                   aria-label="Disabled input example"
                   ref={searchRef}
+                  defaultValue={search}
                   onChange={() =>
                     setTimeout(() => {
-                      setSearch(searchRef?.current?.value);
+                      setSearch(searchRef?.current?.value ?? search);
                     }, 1500)
                   }
                 />
@@ -114,7 +117,7 @@ function FilterProductsScreen() {
                           label={`${category.name} (${
                             allProducts?.filter(
                               (product) => product.category === category._id
-                            ).length || 0 
+                            ).length || 0
                           })`}
                           value={category._id}
                           name="category"
