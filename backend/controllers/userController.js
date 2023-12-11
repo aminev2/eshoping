@@ -2,7 +2,7 @@ import asyncHandler from "../middlewares/asyncHandler.js";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 import { sendEmail } from "../utils/sendEmail.js";
-import {randomBytes} from "crypto"
+import { randomBytes } from "crypto";
 
 //!@desc Login user / get Token
 //?@route POST /api/users/login
@@ -121,6 +121,7 @@ const resetUserPassword = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 });
+
 //!@desc Get user Profile
 //?@route GET /api/users/profile
 //?@access Private
@@ -161,10 +162,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
     const updatedUser = await user.save();
     res.status(200).json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
+      status: 200,
+      message: "User profile updated successfully",
+      data: updatedUser,
     });
   } else {
     res.status(404);
@@ -177,22 +177,29 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 //?@access Private/Admin
 
 const getUsers = asyncHandler(async (req, res) => {
-  const users = await User.find({});
-  if (users) {
-    res.status(200).send(users);
-  } else {
-    res.status(404);
-    throw new Error("User not found");
-  }
+  const users = await User.find({ isAdmin: true });
+  const customers = await User.find({ isAdmin: false });
+  res.status(200).send({
+    customers,
+    customersCount: customers.length,
+    usersCount: users.length,
+    users,
+  });
 });
-
 //!@desc Get user By ID
 //?@route GET /api/users/:id
 //?@access Private/Admin
 
 const getUserByID = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  res.send(`Get user by ${id}`);
+  const user = await User.findById(id).select("-password");
+
+  if (user) {
+    res.status(200).send(user);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
 });
 
 //!@desc Delete user
@@ -200,9 +207,18 @@ const getUserByID = asyncHandler(async (req, res) => {
 //?@access Private/Admin
 
 const deleteUser = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-
-  res.send(`Delete user by ${id}`);
+  const user = await User.findById(req.params.id);
+  if (user) {
+    if (user.isAdmin) {
+      res.status(400);
+      throw new Error("Cannot delete admin user");
+    }
+    await User.deleteOne({ _id: user._id });
+    res.status(200).json({ message: "User deleted successfully" });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
 });
 
 //!@desc Update user
@@ -210,8 +226,70 @@ const deleteUser = asyncHandler(async (req, res) => {
 //?@access Private/Admin
 
 const updateUser = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  res.send(`Update  user by ${id}`);
+  const user = await User.findById(req.params.id);
+  console.log(user._id);
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.isAdmin = Boolean(req.body.isAdmin);
+
+    const updatedUser = await user.save();
+    console.log(updatedUser._id);
+
+    res.status(200).json(user);
+  }
+});
+
+/*----------------------STATISTICS----------------------*/
+
+//! @desc Get user count by day
+// @route GET /api/products/count-by-day
+// @access Private/Admin
+const getUserCountByDay = asyncHandler(async (req, res) => {
+  const userCountByDay = await User.aggregate([
+    { $match: { isAdmin: true } },
+    {
+      $group: {
+        _id: {
+          day: { $dayOfYear: "$createdAt" },
+          year: { $year: "$createdAt" },
+        },
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  if (!userCountByDay) {
+    res.status(404);
+    throw new Error("No data found");
+  }
+
+  return res.status(200).json(userCountByDay);
+});
+
+//! @desc Get customer count by day
+// @route GET /api/products/count-by-day
+// @access Private/Admin
+const getCustomerCountByDay = asyncHandler(async (req, res) => {
+  const customerCountByDay = await User.aggregate([
+    { $match: { isAdmin: false } },
+    {
+      $group: {
+        _id: {
+          day: { $dayOfYear: "$createdAt" },
+          year: { $year: "$createdAt" },
+        },
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  if (!customerCountByDay) {
+    res.status(404);
+    throw new Error("No data found");
+  }
+
+  return res.status(200).json(customerCountByDay);
 });
 
 export {
@@ -225,4 +303,6 @@ export {
   updateUser,
   deleteUser,
   resetUserPassword,
+  getCustomerCountByDay,
+  getUserCountByDay,
 };
