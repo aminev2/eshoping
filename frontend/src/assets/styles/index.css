@@ -637,29 +637,62 @@ th {
 /*--------------- Season -----------------*/
 
 .season {
-  padding: 0;
+  padding: 3%;
 }
 
 .back-season {
-  padding: 10% 0;
   background: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1702214777/marco-pregnolato-ahYX46whD8s-unsplash_1_gl8sml.jpg);
   background-size: cover;
   background-position: center;
 }
 
-.photo-season {
+.box-season {
   background: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1702223321/man-hiking-up-a-snowy-mountain-corey-rich_ovf5l1.jpg);
-  padding: 10% 0;
 }
 
-.photo-season {
+.box-season {
   background-size: cover;
   color: #fff;
   border: solid 5px #fff;
+  padding: 30% 0;
+  position: relative;
 }
 
-.photo-season h2 {
+.box-season h2 {
   font-weight: 600;
+}
+
+.box-seasons {
+  margin-bottom: -140px;
+}
+
+.overlay-season {
+  background: #69696985;
+  padding: 200px 0 5% 0;
+}
+
+.title-season {
+    color: #ffffff;
+    font-size: 3rem;
+}
+
+.text-season {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.btn-season {
+  padding: 12px 15px;
+  background: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 500;
+}
+
+.btn-season:hover {
+  background: #fe4749;
+  color: #fff;
 }
 
 @media (max-width: 768px) {

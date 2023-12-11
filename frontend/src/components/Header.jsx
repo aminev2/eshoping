@@ -16,8 +16,10 @@ import { useNavigate } from "react-router-dom";
 import { selectAuth, logout } from "../slices/authSlice";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import NavBarCategories from "./NavBarCategories";
 import { useLocation } from "react-router-dom";
 import { BiSearchAlt } from "react-icons/bi";
+
 const Header = () => {
   const { cartItems } = useSelector(selectCart);
   const { userInfo } = useSelector(selectAuth);
@@ -38,9 +40,11 @@ const Header = () => {
     }
   };
 
+  const location = useLocation();
+
   return (
     <header>
-      <Navbar className="top-nav" bg="dark" variant="dark" expand="md" fixed="">
+      <Navbar className={`top-nav ${location.pathname === '/' ? 'navbar-home' : ''}`} bg="dark" variant="dark" expand="md" fixed="">
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
