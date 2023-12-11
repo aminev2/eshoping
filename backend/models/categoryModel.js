@@ -1,10 +1,6 @@
 // Import necessary modules
 import { Schema, model } from "mongoose";
-<<<<<<< HEAD
-
-=======
 import Product from "./productModel.js";
->>>>>>> d80f2122969703b745754b46f9ffaeb6fabc7e1f
 // Create the category schema
 const categorySchema = new Schema(
   {
@@ -21,11 +17,6 @@ const categorySchema = new Schema(
   { timestamps: true }
 );
 
-<<<<<<< HEAD
-// Create and export the Category model
-const Category = model("Category", categorySchema);
-export default Category ;
-=======
 // Pre-hook to delete all products when a category is removed
 categorySchema.pre("remove", async function (next) {
   try {
@@ -49,4 +40,3 @@ categorySchema.pre("remove", async function (next) {
 // Create and export the Category model
 const Category = model("Category", categorySchema);
 export default Category;
->>>>>>> d80f2122969703b745754b46f9ffaeb6fabc7e1f

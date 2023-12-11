@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Product from "../models/productModel.js";
-import mongoose from "mongoose";
 import OpenAI from "openai";
 import { config } from "dotenv";
 config();
