@@ -34,3 +34,13 @@ export const getAllCategories = asyncHandler(async (req, res) => {
       .json({ message: "Internal Server Error", error: error.message });
   }
 });
+
+export const deleteCategory = asyncHandler(async (req, res) => {
+  const category = await Category.findById(req.params.id);
+  if (category) {
+    await Category.deleteOne({ _id: category.id });
+    res.json({ message: `${category.name} Category  removed` });
+  } else {
+    throw new Error("Category not found");
+  }
+});

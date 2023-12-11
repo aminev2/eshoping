@@ -47,6 +47,7 @@ const productSchema = new Schema(
       required: true,
       ref: "Category",
     },
+
     name: {
       type: String,
       required: true,
