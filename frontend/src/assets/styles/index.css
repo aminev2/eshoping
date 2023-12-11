@@ -191,6 +191,19 @@ a.cart2.active.nav-link {
   background-color: #fe4749 !important;
   box-shadow: inset 0 0 1px 1px lightgrey;
 }
+
+/*? Styling react Bootstrap Form.Range */
+
+.form-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fe4749 !important; /* Change the color here */
+  cursor: pointer;
+}
+
 /*--------------- Home Page -----------------*/
 
 .top {
