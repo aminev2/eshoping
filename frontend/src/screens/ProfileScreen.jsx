@@ -53,6 +53,7 @@ const ProfileScreen = () => {
         const res = await updateProfile({
           _id: userInfo._id,
           name,
+          email,
           password,
         }).unwrap();
 
@@ -113,82 +114,92 @@ const ProfileScreen = () => {
   ];
   return (
     <div className="profile cb">
-    <div className="container pt-4">
-    <Row>
-      <Col md={3}>
-        <Image className="center-item img-profile" src="/favicon.png" roundedCircle width={"50px"} />
-        <h3 className="text-center">{userInfo?.name}</h3>
-        <Form onSubmit={submitHandler}>
-          <Form.Group controlId="email" className="my-2">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder="Enter name"
-              value={name}
-              required
-              onChange={(event) => setName(event.target.value)}
-            ></Form.Control>
-          </Form.Group>
+      <div className="container pt-4">
+        <Row>
+          <Col md={3}>
+            <Image
+              className="center-item img-profile"
+              src="/favicon.png"
+              roundedCircle
+              width={"50px"}
+            />
+            <h3 className="text-center">{userInfo?.name}</h3>
+            <Form onSubmit={submitHandler}>
+              <Form.Group controlId="email" className="my-2">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="name"
+                  placeholder="Enter name"
+                  value={name}
+                  required
+                  onChange={(event) => setName(event.target.value)}
+                ></Form.Control>
+              </Form.Group>
 
-          <Form.Group controlId="email" className="my-2">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              required
-              onChange={(event) => setEmail(event.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="password" className="my-2">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter password"
-              minLength={8}
-              value={password}
-              required
-              onChange={(event) => setPassword(event.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="confirmedPassword" className="my-2">
-            <Form.Label>Confirmed Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Confirm password"
-              required
-              minLength={8}
-              value={confirmedPassword}
-              onChange={(event) => setConfirmedPassword(event.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Button type="submit" variant="primary" className="my-2">
-            Update
-          </Button>
-          {isLoadingUpdateProfile && <Loader />}
-        </Form>
-      </Col>
-      <Col md={9}>
-        <h2>My orders</h2>
-        {isLoadingMyOrders ? (
-          <Loader></Loader>
-        ) : error ? (
-          <Message variant={"danger"} className={"text-center"}>
-            "We're sorry, but we encountered an issue while processing your
-            request."
-          </Message>
-        ) : (
-          <BootstrapTable
-            keyField="_id"
-            data={myOrders}
-            columns={columns}
-            defaultSorted={defaultSorted}
-            pagination={paginationFactory()}
-          />
-        )}
-      </Col>
-    </Row>
-    </div>
+              <Form.Group controlId="email" className="my-2">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  required
+                  onChange={(event) => setEmail(event.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="password" className="my-2">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter password"
+                  minLength={8}
+                  value={password}
+                  required
+                  onChange={(event) => setPassword(event.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="confirmedPassword" className="my-2">
+                <Form.Label>Confirmed Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirm password"
+                  required
+                  minLength={8}
+                  value={confirmedPassword}
+                  onChange={(event) => setConfirmedPassword(event.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Button
+                type="submit"
+                variant="primary"
+                className="my-2"
+                disabled={isLoadingUpdateProfile}
+              >
+                Update
+              </Button>
+              {isLoadingUpdateProfile && <Loader />}
+            </Form>
+          </Col>
+          <Col md={9}>
+            <h2>My orders</h2>
+            {isLoadingMyOrders ? (
+              <Loader></Loader>
+            ) : error ? (
+              <Message variant={"danger"} className={"text-center"}>
+                "We're sorry, but we encountered an issue while processing your
+                request."
+              </Message>
+            ) : (
+              <BootstrapTable
+                keyField="_id"
+                data={myOrders}
+                columns={columns}
+                defaultSorted={defaultSorted}
+                pagination={paginationFactory()}
+              />
+            )}
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 };
