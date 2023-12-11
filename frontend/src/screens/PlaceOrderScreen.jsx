@@ -56,7 +56,7 @@ const PlaceOrderScreen = () => {
       dispatch(clearCartItems());
 
       // Redirect to the order confirmation page
-      navigate(`/orders/${res._id}`);
+      navigate(`/orders/${res?._id}`);
     } catch (error) {
       // Display an error message if the order creation fails
       toast.error(error);
@@ -80,6 +80,12 @@ const PlaceOrderScreen = () => {
             </ListGroup.Item>
 
             <ListGroup.Item>
+              <h2>Payment</h2>
+              <strong>Method: </strong>
+              {cart.paymentMethod}
+            </ListGroup.Item>
+
+            <ListGroup.Item>
               <h2>Oder Items:</h2>
               {cart?.cartItems?.length === 0 ? (
                 <Message>Your Cart is empty</Message>
@@ -99,7 +105,7 @@ const PlaceOrderScreen = () => {
                           </Col>
 
                           <Col>
-                            <Link to={`/products/${item._id}`}>
+                            <Link to={`/products/${item?._id}`}>
                               {item.name}
                             </Link>
                           </Col>

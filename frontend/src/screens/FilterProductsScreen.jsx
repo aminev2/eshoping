@@ -297,7 +297,7 @@ function FilterProductsScreen() {
                       ) : (
                         products?.map((product) => {
                           return (
-                            <Col key={product._id} sm={12} md={4} lg={4} lx={3}>
+                            <Col key={product._id} sm={12} md={6} lg={3}>
                               <Product className="product" product={product}>
                                 {
                                   <>

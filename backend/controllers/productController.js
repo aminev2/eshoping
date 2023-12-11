@@ -27,37 +27,41 @@ function getRandomAIModel() {
   const randomIndex = Math.floor(Math.random() * FreeAIModels.length);
   return FreeAIModels[randomIndex];
 }
-// @desc    Create a product
+
+//! @desc    Create a product
 // @route   POST /api/products
 // @access  Private/Admin
+
 const createProduct = asyncHandler(async (req, res) => {
-  const {
-    name,
-    price,
-    image,
-    brand,
-    category,
-    countInStock,
-    numReviews,
-    description,
-  } = req.body;
+  const { name, price, category, description } = req.body;
+
+  const image = (await req.files) ? req.files.map((file) => file.path) : null;
+  console.log("req files ", req.files);
+  console.log("req file ", req.file);
+  console.log("name ", name);
+  console.log("price ", price);
+  console.log("image ", image);
 
   const product = new Product({
     name,
     price,
-    user: req.user._id,
-    image: "/images/sample.jpg",
-    category,
-    countInStock: 0,
-    numReviews: 0,
-    description: "Sample description",
+    user: req?.user?._id,
+    image,
+    category: new mongoose.Types.ObjectId(category),
+    countInStock: 5,
+    description,
   });
 
-  const createdProduct = await product.save();
-  res.status(201).json(createdProduct);
+  if (product) {
+    const createdProduct = await product.save();
+    res.status(201).json(createdProduct);
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
 });
 
-// @desc Fetch all products
+//! @desc Fetch all products
 // @route GET /api/products
 // @access Public
 
@@ -86,10 +90,6 @@ const getProductById = asyncHandler(async (req, res) => {
   return res.status(200).send(product);
 });
 
-//! @desc Fetch  a product
-// @route GET /api/products/:id
-// @access Private/Admin
-
 //! @desc    Delete a product
 // @route   DELETE /api/products/:id
 // @access  Private/Admin
@@ -105,16 +105,40 @@ const deleteProduct = asyncHandler(async (req, res) => {
   }
 });
 
+//! @desc Update product
+// @route UPDATE /api/products/:id
+// @access Private/Admin
+const updateProduct = asyncHandler(async (req, res) => {
+  const productId = req.params.id;
+  const { name, price, category, description } = req.body;
+
+  const image = req.files ? req.files.map((file) => file.path) : null;
+  console.log("req file ", req.file);
+
+  // Assuming you have a method like `Product.findById` to find the existing product
+  const existingProduct = await Product.findById(productId);
+
+  if (existingProduct) {
+    existingProduct.name = name || existingProduct.name;
+    existingProduct.price = price || existingProduct.price;
+    existingProduct.category = category || existingProduct.category;
+    existingProduct.description = description || existingProduct.description;
+
+    if (image) {
+      existingProduct.image = image;
+    }
+
+    const updatedProduct = await existingProduct.save();
+    res.status(200).json(updatedProduct);
+  } else {
+    res.status(404).json({ message: "Product not found" });
+  }
+});
+
 /**
  *!@description Create a new product review
  * @route POST /api/products/:id/reviews
  * @access Private
- *
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- * @param {Function} next - Express next middleware function
- *
- * @throws {Error} If the product is not found or the user has already reviewed the product
  */
 
 const createProductReview = asyncHandler(async (req, res) => {
@@ -214,6 +238,12 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ *!@description Create a new product review
+ * @route POST /api/products
+ * @access Public
+ */
+
 const filterProducts = async (req, res) => {
   try {
     const { name, description, category, minPrice, maxPrice, rating } =
@@ -258,10 +288,39 @@ const filterProducts = async (req, res) => {
   }
 };
 
+/*------------------------STATISTICS--------------------*/
+
+//! @desc Get product count by day
+// @route GET /api/products/count-by-day
+// @access Private/Admin
+const getProductCountByDay = asyncHandler(async (req, res) => {
+  const productCountByDay = await Product.aggregate([
+    {
+      $group: {
+        _id: {
+          day: { $dayOfYear: "$createdAt" },
+          year: { $year: "$createdAt" },
+        },
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  if (!productCountByDay) {
+    res.status(404);
+    throw new Error("No data found");
+  }
+
+  return res.status(200).json(productCountByDay);
+});
+
 export {
   getProducts,
   getProductById,
   createProductReview,
   createProduct,
   filterProducts,
+  getProductCountByDay,
+  updateProduct,
+  deleteProduct,
 };

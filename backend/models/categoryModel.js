@@ -39,4 +39,4 @@ categorySchema.pre("remove", async function (next) {
 
 // Create and export the Category model
 const Category = model("Category", categorySchema);
-export { Category };
+export default Category;

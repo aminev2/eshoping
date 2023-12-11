@@ -18,14 +18,15 @@ import ChooseUs from "../components/ChooseUs";
 
 import SeasonSection from "../components/SeasonSection";
 import HeaderVideo from "../components/HeaderVideo";
+import { useEffect } from "react";
 
 const HomeScreen = () => {
   const {
     data: products,
     isLoading: isLoadingProducts,
-    error,
-    refetch,
-  } = useGetProductsQuery();
+    error: errorProducts,
+    refetch: refetchProducts,
+  } = useGetProductsQuery({ refetchOnMountOrArgChange: true });
 
   const {
     data: categories,
@@ -45,27 +46,36 @@ const HomeScreen = () => {
     dispatch(addToCart({ ...product, qty }));
   };
 
+  useEffect(() => {
+    refetchCategories();
+    refetchProducts();
+  }, [refetchCategories, refetchProducts]);
+
   return (
     <>
-      {!isLoadingCategories && !isLoadingProducts && (
-        <NavBarCategories
-          categories={categories}
-          products={products}
-        ></NavBarCategories>
-      )}
+      {!isLoadingCategories &&
+        !isLoadingProducts &&
+        !categoriesError &&
+        !errorProducts && (
+          <NavBarCategories
+            categories={categories}
+            products={products}
+          ></NavBarCategories>
+        )}
 
       <HeaderVideo />
 
       <SeasonSection />
 
       <ChooseUs></ChooseUs>
+
       <Categories />
 
       <div className="container">
         <div className="last-posts">
           {isLoadingProducts ? (
             <Loader></Loader>
-          ) : error ? (
+          ) : errorProducts ? (
             <Message variant={"danger"} className={"text-center"}>
               {
                 "We're sorry, but we encountered an issue while processing your request."
@@ -76,7 +86,7 @@ const HomeScreen = () => {
               <h2 className="title">Latest products</h2>
               <span className="line-title"></span>
 
-              <Row className="text-center">
+              <Row>
                 <Carousel
                   enableAutoPlay={true}
                   enableMouseSwipe
@@ -93,7 +103,7 @@ const HomeScreen = () => {
                 >
                   {products?.slice(0, 10).map((product) => {
                     return (
-                      <Col key={product._id}>
+                      <Col key={product._id} className="mx-1">
                         <Product className="product" product={product}>
                           {
                             <OffCanvasCartScreen
@@ -109,7 +119,7 @@ const HomeScreen = () => {
                   })}
                 </Carousel>
 
-                <Col>
+                <Col className="text-center">
                   <Button onClick={() => navigate("/products")}>
                     Show more
                   </Button>

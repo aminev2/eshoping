@@ -34,8 +34,10 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       query: (filterOption) => ({
         url: `${PRODUCTS_URL}/filter`,
         params: filterOption,
+      
       }),
       keepUnusedDataFor: 2,
+  
     }),
   }),
 });
