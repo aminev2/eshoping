@@ -138,6 +138,7 @@ const ProductScreen = () => {
                             onChange={(event) => {
                               setQty(Number(event.target.value));
                             }}
+                            defaultValue={1}
                             min={Number(1)}
                             max={Number(product.countInStock)}
                           />

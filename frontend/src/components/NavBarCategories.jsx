@@ -30,25 +30,23 @@ const NavBarCategories = ({ categories, products }) => {
                   </Link>
                   <div className="dropdown-menu">
                     {products?.map((product) => {
-                      if (product.category === category._id) {
-                        return (
-                          <>
-                            <Link
-                              className="dropdown-item"
-                              key={product._id}
-                              to={`/products/${product._id}`}
-                            >
-                              <Image
-                                src={product?.image?.[0]}
-                                width={"30px"}
-                                alt={product.name}
-                                rounded
-                              ></Image>{" "}
-                              {product.name.toUpperCase().substring(0, 50)}
-                            </Link>
-                          </>
-                        );
-                      }
+                      return (
+                        product.category === category._id && (
+                          <Link
+                            className="dropdown-item"
+                            key={product._id}
+                            to={`/products/${product._id}`}
+                          >
+                            <Image
+                              src={product?.image?.[0]}
+                              width={"30px"}
+                              alt={product.name}
+                              rounded
+                            ></Image>
+                            {product.name.toUpperCase().substring(0, 50)}
+                          </Link>
+                        )
+                      );
                     })}
                   </div>
                 </li>

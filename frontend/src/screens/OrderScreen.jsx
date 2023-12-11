@@ -135,154 +135,155 @@ const OrderScreen = () => {
   ) : (
     <div className="orders cb pt-4 pb-4">
       <div className="container">
-      <h2 className="mt-3">Order {order._id}</h2>
-      <Row>
-        <Col md={8}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <h3>Shipping information</h3>
-              <p>
-                <strong>Name: </strong>
-                {order.user.name}
-              </p>
-              <p>
-                <strong>Address: </strong>
-                {order.shippingAddress.address}, {order.shippingAddress.city},{" "}
-                {order.shippingAddress.country} {order.shippingAddress.country}
-              </p>
-              {order.isDelivered ? (
-                <Message variant={"success"}>
-                  Delivered on{" "}
-                  {new Date(order.deliveredAt).toLocaleString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                    hour: "numeric",
-                    minute: "numeric",
-                    hour12: true,
-                  })}
-                </Message>
-              ) : (
-                <Message variant={"danger"}>Not Delivered</Message>
-              )}
-            </ListGroup.Item>
-
-            <ListGroup.Item>
-              <h3>Payment Method</h3>
-              <p>
-                <strong>Method: </strong>
-                {order.paymentMethod}
-              </p>
-
-              {order.isPaid ? (
-                <Message variant={"success"}>
-                  Paid At{" "}
-                  {new Date(order.paidAt).toLocaleString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                    hour: "numeric",
-                    minute: "numeric",
-                    hour12: true,
-                  })}
-                </Message>
-              ) : (
-                <Message variant={"danger"}>Not Paid</Message>
-              )}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <h2>Order Items</h2>
-              {order.orderItems.map((item, index) => {
-                return (
-                  <ListGroup.Item key={index}>
-                    <Row>
-                      <Col md={1}>
-                        <Image
-                          src={item.image}
-                          alt={item.name}
-                          fluid
-                          rounded
-                        ></Image>
-                      </Col>
-                      <Col>
-                        <Link to={`/products/${item.product}`}>
-                          {item.name}
-                        </Link>
-                      </Col>
-                      <Col md={4}>
-                        {item.qty} x ${item.price} = ${item.price * item.qty}
-                      </Col>
-                    </Row>
-                  </ListGroup.Item>
-                );
-              })}
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
-        <Col md={4}>
-          <Card>
-            <ListGroup>
+        <h2 className="mt-3">Order {order._id}</h2>
+        <Row>
+          <Col md={8}>
+            <ListGroup variant="flush">
               <ListGroup.Item>
-                <h2>Order Summary</h2>
+                <h3>Shipping information</h3>
+                <p>
+                  <strong>Name: </strong>
+                  {order.user.name}
+                </p>
+                <p>
+                  <strong>Address: </strong>
+                  {order.shippingAddress.address}, {order.shippingAddress.city},{" "}
+                  {order.shippingAddress.country}{" "}
+                  {order.shippingAddress.country}
+                </p>
+                {order.isDelivered ? (
+                  <Message variant={"success"}>
+                    Delivered on{" "}
+                    {new Date(order.deliveredAt).toLocaleString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                    })}
+                  </Message>
+                ) : (
+                  <Message variant={"danger"}>Not Delivered</Message>
+                )}
               </ListGroup.Item>
 
               <ListGroup.Item>
-                <Row>
-                  <Col>Items Price:</Col>
-                  <Col>${order.itemsPrice}</Col>
-                </Row>
-                <Row>
-                  <Col>Shipping Price:</Col>
-                  <Col>
-                    {order.shippingPrice === 0
-                      ? "Free"
-                      : ` $${order.shippingPrice}`}
-                  </Col>
-                </Row>
-                {/* 
+                <h3>Payment Method</h3>
+                <p>
+                  <strong>Method: </strong>
+                  {order.paymentMethod}
+                </p>
+
+                {order.isPaid ? (
+                  <Message variant={"success"}>
+                    Paid At{" "}
+                    {new Date(order.paidAt).toLocaleString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                    })}
+                  </Message>
+                ) : (
+                  <Message variant={"danger"}>Not Paid</Message>
+                )}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <h2>Order Items</h2>
+                {order.orderItems.map((item, index) => {
+                  return (
+                    <ListGroup.Item key={index}>
+                      <Row>
+                        <Col md={1}>
+                          <Image
+                            src={item?.image?.[0]}
+                            alt={item.name}
+                            fluid
+                            rounded
+                          ></Image>
+                        </Col>
+                        <Col>
+                          <Link to={`/products/${item.product}`}>
+                            {item.name}
+                          </Link>
+                        </Col>
+                        <Col md={4}>
+                          {item.qty} x ${item.price} = ${item.price * item.qty}
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  );
+                })}
+              </ListGroup.Item>
+            </ListGroup>
+          </Col>
+          <Col md={4}>
+            <Card>
+              <ListGroup>
+                <ListGroup.Item>
+                  <h2>Order Summary</h2>
+                </ListGroup.Item>
+
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Items Price:</Col>
+                    <Col>${order.itemsPrice}</Col>
+                  </Row>
+                  <Row>
+                    <Col>Shipping Price:</Col>
+                    <Col>
+                      {order.shippingPrice === 0
+                        ? "Free"
+                        : ` $${order.shippingPrice}`}
+                    </Col>
+                  </Row>
+                  {/* 
                 <Row>
                   <Col>Tax</Col>
                   <Col>${order.taxPrice}</Col>
                 </Row>
  */}
-                <Row>
-                  <Col>Total Price:</Col>
-                  <Col>${order.totalPrice}</Col>
-                </Row>
+                  <Row>
+                    <Col>Total Price:</Col>
+                    <Col>${order.totalPrice}</Col>
+                  </Row>
 
-                {!order.isPaid && (
-                  <ListGroup.Item>
-                    {isLoadingPayPal && <Loader />}
-                    {isPending ? (
-                      <Loader />
-                    ) : (
-                      <div>
-                        <Button
-                          onClick={() => {
-                            onApproveTest();
-                          }}
-                          style={{ marginBottom: "10px" }}
-                        >
-                          Test Pay Order
-                        </Button>
+                  {!order.isPaid && (
+                    <ListGroup.Item>
+                      {isLoadingPayPal && <Loader />}
+                      {isPending ? (
+                        <Loader />
+                      ) : (
                         <div>
-                          <PayPalButtons
-                            createOrder={createOrder}
-                            onApprove={onApprove}
-                            onError={onError}
-                          ></PayPalButtons>
+                          <Button
+                            onClick={() => {
+                              onApproveTest();
+                            }}
+                            style={{ marginBottom: "10px" }}
+                          >
+                            Test Pay Order
+                          </Button>
+                          <div>
+                            <PayPalButtons
+                              createOrder={createOrder}
+                              onApprove={onApprove}
+                              onError={onError}
+                            ></PayPalButtons>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </ListGroup.Item>
-                )}
-                {/**! PAY AS DELIVERED PLACEHOLDER */}
-              </ListGroup.Item>
-            </ListGroup>
-          </Card>
-        </Col>
-      </Row>
-    </div>
+                      )}
+                    </ListGroup.Item>
+                  )}
+                  {/**! PAY AS DELIVERED PLACEHOLDER */}
+                </ListGroup.Item>
+              </ListGroup>
+            </Card>
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 };
