@@ -1,32 +1,43 @@
 const SeasonSection = () => {
   return (
     <section className="season">
-        <div className="back-season">
-          <div className="container">
-            <h2 className="title-season">Seasonal Picks</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis,
-              vitae?
-            </p>
+ 
+
+      <div className="container">
+        <div className="row box-seasons">
+          <div className="col-md-6 col-lg-4">
+            <div className="box-season box-season1">
+              <h3>WINTER</h3>
+            </div>
+          </div>
+          <div className="col-md-6 col-lg-4">
+            <div className="box-season box-season2">
+              <h3>WINTER</h3>
+            </div>
+          </div>
+          <div className="col-md-6 col-lg-4">
+            <div className="box-season box-season3">
+              <h3>WINTER</h3>
+            </div>
+          </div>
         </div>
-        </div>
+      </div>
+
+      <div className="back-season">
+      <div className="overlay-season">
         <div className="container">
-        <div className="row season-items">
-          <div className="col-md-6 col-lg-4 photo-season">
-            <h3>Name product</h3>
-          </div>
-          <div className="col-md-6 col-lg-4 photo-season">
-            <h3>Name product</h3>
-          </div>
-          <div className="col-md-6 col-lg-4 photo-season">
-            <h3>Name product</h3>
-          </div>
-        
+          <h2 className="title-season">Winter season</h2>
+          <p className="text-season">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis,
+            vitae?
+          </p>
+          <button className="btn-season btn">Discover more</button>
         </div>
-        </div>
-      </section>
+      </div>
+      </div>
+      
+    </section>
+  );
+};
 
-  )
-}
-
-export default SeasonSection
+export default SeasonSection;

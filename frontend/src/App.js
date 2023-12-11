@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 const App = () => {
   return (
     <>
-      <Header></Header>
+      <Header/> 
       <main className="main">
         <Outlet></Outlet>
       </main>
