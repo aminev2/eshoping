@@ -1,6 +1,6 @@
+import mongoose from "mongoose";
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Product from "../models/productModel.js";
-import mongoose from "mongoose";
 import OpenAI from "openai";
 import { config } from "dotenv";
 config();
@@ -41,7 +41,6 @@ const createProduct = asyncHandler(async (req, res) => {
   console.log("name ", name);
   console.log("price ", price);
   console.log("image ", image);
-
   const product = new Product({
     name,
     price,

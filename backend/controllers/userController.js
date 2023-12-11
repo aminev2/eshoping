@@ -162,10 +162,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
     const updatedUser = await user.save();
     res.status(200).json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
+      status: 200,
+      message: "User profile updated successfully",
+      data: updatedUser,
     });
   } else {
     res.status(404);
