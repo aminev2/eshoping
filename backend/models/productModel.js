@@ -2,6 +2,7 @@ import { Schema, model } from "mongoose";
 
 const reviewSchema = new Schema(
   {
+    // Reference to the User model
     user: {
       type: Schema.Types.ObjectId,
       required: true,
@@ -22,18 +23,25 @@ const reviewSchema = new Schema(
       type: String,
       required: true,
     },
+
+    isAppropriate: {
+      type: Boolean,
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
 const productSchema = new Schema(
   {
+    // Reference to the User model
     user: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: "User",
     },
 
+    // Reference to the Category model
     category: {
       type: Schema.Types.ObjectId,
       required: true,

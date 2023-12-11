@@ -2,25 +2,25 @@ import { Router } from "express";
 import {
   getProducts,
   getProductById,
-  getProductCountByDay,
+  createProductReview,
   createProduct,
-  deleteCategory,
-  updateProduct,
+  filterProducts,
+  getProductCountByDay,
 } from "../controllers/productController.js";
-import { protect, admin } from "../middlewares/authMiddleware.js";
 import { upload } from "../utils/uploadImages.js";
+import { protect, admin } from "../middlewares/authMiddleware.js";
 const router = Router();
 
-router.post("/", protect, admin, upload.array("image"), createProduct);
-
-router.get("/", getProducts);
-
 router.get("/count-by-day", getProductCountByDay);
+router
+  .route("/")
+  .get(getProducts)
+  .post(protect, admin, upload.array("image"), createProduct);
 
 router.get("/:id([0-9a-fA-F]{24})", getProductById);
 
-router.delete("/:id([0-9a-fA-F]{24})", protect, admin, deleteCategory);
+router.route("/filter").get(filterProducts);
 
-router.put("/:id([0-9a-fA-F]{24})", protect, admin, updateProduct);
+router.route("/:id/reviews").post(protect, createProductReview);
 
 export default router;

@@ -1,6 +1,34 @@
 /*--------------- Main styles -----------------*/
+.custom-range-color {
+  color: #fe4749 !important; /* Change the track color */
+  --form-range-thumb-active-bg: #fe4749 !important;
+  --speechify-primary-color: #fe4749 !important;
+  --bs-list-group-active-bg: #fe4749 !important;
+  --bs-list-group-active-border-color: #fe4749 !important;
+}
+
+.cb {
+  background: #ededed;
+  padding: 2rem 0;
+}
+
+.center-item {
+  display: block;
+  margin: 0 auto;
+}
+
 .main-color {
   color: #fe4749 !important;
+}
+
+.btn-primary {
+  background: #fe4749;
+  border: solid 1px #a10000;
+}
+
+.btn-primary:hover {
+  background: #a10000;
+  border: solid 1px #a10000;
 }
 
 li {
@@ -17,7 +45,7 @@ a {
 }
 
 section {
-  padding: 5rem 0;
+  padding: 3rem 0;
 }
 
 .header-page {
@@ -29,7 +57,6 @@ section {
   width: 100%;
   height: 100%;
   background: #000000a1;
-
 }
 
 .bold {
@@ -40,13 +67,41 @@ section {
   font-size: 2rem;
   font-weight: 600;
   text-align: center;
+  margin-bottom: 1rem;
+}
+
+.line-title {
+  background: #fe4749;
+  width: 80px;
+  height: 3px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10%;
   margin-bottom: 2rem;
 }
 
+.form-check-input:checked {
+  background-color: #fe4749;
+  border-color: #fe4749;
+}
+
+.btn-primary {
+  --bs-btn-hover-bg: #fe4749;
+  --bs-btn-active-bg: #fe4749;
+  --bs-btn-active-border-color: #fe4749;
+}
+
+.btn:disabled,
+fieldset:disabled .btn {
+  background-color: #fe4749;
+  border-color: #a10000;
+  opacity: #a10000;
+}
 
 /*--------------- Main navbar -----------------*/
 .top-nav {
   padding: 5px 0;
+  position: relative;
 }
 
 .navbar .dropdown:hover .dropdown-menu {
@@ -56,8 +111,9 @@ section {
 .cart2 {
   position: absolute !important;
   color: #fff;
-  right: 20%;
-  top: 26px;
+  right: 50vw;
+  top: 20px;
+  margin-right: -40px;
 }
 
 .cart2:hover {
@@ -78,7 +134,8 @@ a.cart2.active.nav-link {
 }
 
 .navbar-menu li {
-  margin: 0 0.5rem;
+  margin: 0 0.4rem;
+  font-size: 1rem;
 }
 
 .navbar-menu li a {
@@ -113,6 +170,48 @@ a.cart2.active.nav-link {
 
 .slide3 {
   background-image: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1701178029/nasim-dadfar-w28Ei0Ap96w-unsplash_cxu5bx.jpg);
+}
+
+/*? Styling  React Elastic Carousel  */
+.rec.rec-arrow {
+  background-color: #fe4749;
+  color: white;
+}
+
+.rec.rec-arrow:hover {
+  background-color: #fe4749 !important;
+  color: white;
+}
+
+.rec.rec-arrow:hover:active {
+  background-color: #fe4749 !important;
+  color: white;
+}
+
+.rec.rec-arrow:hover:focus {
+  background-color: #fe4749 !important;
+  color: white;
+}
+.rec.rec-arrow:disabled {
+  visibility: hidden;
+}
+
+.rec-carousel-item:focus {
+  outline: none;
+  background-color: #fe4749 !important;
+  box-shadow: inset 0 0 1px 1px lightgrey;
+}
+
+/*? Styling react Bootstrap Form.Range */
+
+.form-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fe4749 !important; /* Change the color here */
+  cursor: pointer;
 }
 
 /*--------------- Home Page -----------------*/
@@ -150,6 +249,7 @@ a.cart2.active.nav-link {
 
 .product a img {
   height: 165px;
+  object-fit: contain;
 }
 
 /*--------------- Categories -----------------*/
@@ -258,7 +358,8 @@ section.categories {
   margin-bottom: 10px;
 }
 
-.prev i, .next i {
+.prev i,
+.next i {
   color: #fe4749;
   font-size: 2.5rem;
 }
@@ -306,6 +407,10 @@ section.categories {
   margin-bottom: 10px;
 }
 
+.social {
+  margin-right: 10px;
+}
+
 /*--------------- Page Home -----------------*/
 
 .choose-item {
@@ -319,29 +424,27 @@ section.categories {
   margin: 10px;
 }
 
+section.choose-us {
+  background: #202529;
+}
+
+section.choose-us h2.title {
+  color: #fff;
+}
+
 .choose-item p {
   font-size: 1.1rem;
   text-align: center;
-}
-
-h2.title::after {
-  content: '_____';
-  letter-spacing: -2px;
-  display: block;
-  font-weight: 900;
-  color: #fe4749;
 }
 
 .choose-item i {
   font-size: 3rem;
 }
 
-
-
 .values {
-    padding: 1rem 0;
-    background: #fe4749;
-    color: #fff;
+  padding: 1rem 0;
+  background: #fe4749;
+  color: #fff;
 }
 
 .value {
@@ -364,11 +467,66 @@ h2.title::after {
   text-align: center;
 }
 
-
 td,
 th {
   text-align: center;
 }
+
+.video-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.background-video {
+  position: absolute;
+  width: 100%;
+  object-fit: cover;
+  height: 450px;
+}
+
+/* .content-video {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  background: #00000055;
+} */
+
+.content-video {
+  z-index: 20;
+  position: relative;
+  padding: 10% 1%;
+  background: #00000055;
+  color: #fff;
+}
+
+.btn-header {
+  margin: 0 auto;
+  display: block;
+}
+
+.content-video h1 {
+  font-size: 2.7em;
+}
+
+.content-video p {
+  font-size: 1.2em;
+}
+
+/* .title-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 2em;
+  text-align: center;
+} */
 
 /*--------------- Page contact -----------------*/
 
@@ -444,7 +602,7 @@ th {
 /*--------------- Page About -----------------*/
 
 .about {
-    background: #f8f9fa;
+  background: #f8f9fa;
 }
 
 .about-item {
@@ -464,12 +622,95 @@ th {
   padding: 20px;
 }
 
+/*--------------- Page shop -----------------*/
 
+.page-all-products {
+  background: #ededed;
+  padding: 3rem 0;
+}
 
+.side-filter h5 {
+  margin-bottom: 10px;
+  margin-top: 15px;
+  background: #fe4749;
+  padding: 10px;
+  color: #fff;
+}
 
+.star-filter {
+  color: rgb(255, 152, 0);
+  margin-right: 5px;
+}
+
+/*--------------- Page profile -----------------*/
+
+/*--------------- Season -----------------*/
+
+.season {
+  padding: 3%;
+}
+
+.back-season {
+  background: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1702214777/marco-pregnolato-ahYX46whD8s-unsplash_1_gl8sml.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.box-season {
+  background: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1702223321/man-hiking-up-a-snowy-mountain-corey-rich_ovf5l1.jpg);
+}
+
+.box-season {
+  background-size: cover;
+  color: #fff;
+  border: solid 5px #fff;
+  padding: 30% 0;
+  position: relative;
+}
+
+.box-season h2 {
+  font-weight: 600;
+}
+
+.box-seasons {
+  margin-bottom: -140px;
+}
+
+.overlay-season {
+  background: #69696985;
+  padding: 200px 0 5% 0;
+}
+
+.title-season {
+    color: #ffffff;
+    font-size: 3rem;
+}
+
+.text-season {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.btn-season {
+  padding: 12px 15px;
+  background: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 500;
+}
+
+.btn-season:hover {
+  background: #fe4749;
+  color: #fff;
+}
 
 @media (max-width: 768px) {
   .cart1 {
+    display: none;
+  }
+
+  .nav-menu {
     display: none;
   }
 }

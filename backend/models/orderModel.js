@@ -1,4 +1,5 @@
 import { model, Schema } from "mongoose";
+
 const orderSchema = new Schema(
   {
     user: {
@@ -12,10 +13,9 @@ const orderSchema = new Schema(
       {
         name: { type: String, required: true },
         qty: { type: Number, required: true },
-        image: { type: Array },
+        image: { type: Array, required: true },
         price: { type: Number, required: true },
         sizes: { type: Array },
-        
         product: {
           type: Schema.Types.ObjectId,
           required: true,

@@ -22,9 +22,30 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       // Optionally specify a duration to keep unused data in the cache
       keepUnusedDataFor: 5,
     }),
+    createProductReview: builder.mutation({
+      query: (data) => ({
+        url: `${PRODUCTS_URL}/${data.productId}/reviews`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Product"],
+    }),
+    filterProducts: builder.query({
+      query: (filterOption) => ({
+        url: `${PRODUCTS_URL}/filter`,
+        params: filterOption,
+      
+      }),
+      keepUnusedDataFor: 2,
+  
+    }),
   }),
 });
 
 // Extract the `useGetProductsQuery` and `useGetProductDetailsQuery` hooks
-export const { useGetProductsQuery, useGetProductDetailsQuery } =
-  productsApiSlice;
+export const {
+  useGetProductsQuery,
+  useGetProductDetailsQuery,
+  useCreateProductReviewMutation,
+  useFilterProductsQuery,
+} = productsApiSlice;

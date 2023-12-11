@@ -26,12 +26,13 @@ import OrderScreen from "./screens/OrderScreen";
 import ContactScreen from "./screens/ContactScreen";
 import AboutScreen from "./screens/AboutScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import FilterProductsScreen from "./screens/FilterProductsScreen";
 
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap/dist/css/bootstrap.min.css";
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 import "./assets/styles/index.css";
 
@@ -53,6 +54,12 @@ const router = createBrowserRouter(
 
       <Route path="/about" element={<AboutScreen></AboutScreen>}></Route>
 
+      <Route
+        path="/products/"
+        element={<FilterProductsScreen>
+
+        </FilterProductsScreen>}
+      ></Route>
 
       <Route
         path="/register"

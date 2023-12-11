@@ -39,7 +39,6 @@ app.get("/", (req, res) => {
   res.status(200).send("API is running");
 });
 
-
 // PayPal API
 app.get("/api/config/paypal", (req, res) => {
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
@@ -50,7 +49,6 @@ app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/categories", categoryRoutes);
-
 
 // Error handling Middleware
 app.use(notFound, errorHandler);

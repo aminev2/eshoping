@@ -1,7 +1,7 @@
 import React from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import PropTypes from "prop-types";
-const Rating = ({ ratingValue, numReviews }) => {
+const Rating = ({ ratingValue, numReviews, addRate }) => {
   //? Function to generate an array of star components based on the rating value
   const generateStars = () => {
     ratingValue = ratingValue ? ratingValue : 0;
@@ -31,9 +31,14 @@ const Rating = ({ ratingValue, numReviews }) => {
   };
 
   return (
-    <div>
+    <div >
       <span>{generateStars()}</span>
-      <span className="rating-text">{numReviews ? numReviews : 0} reviews</span>
+
+      {!addRate && (
+        <span className="rating-text">
+          {numReviews ? numReviews : 0} reviews
+        </span>
+      )}
     </div>
   );
 };

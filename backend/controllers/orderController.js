@@ -1,6 +1,5 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Order from "../models/orderModel.js";
-
 //! @desc Create new order
 // @route  POST /api/orders
 // @access Private
@@ -39,9 +38,13 @@ const addOrderItems = asyncHandler(async (req, res) => {
       totalPrice,
     });
 
-    const createdOrder = await order.save();
-
-    res.status(201).send(createdOrder);
+    if (order) {
+      const createdOrder = await order.save();
+      res.status(201).send(createdOrder);
+    } else {
+      res.status(400);
+      throw new Error("Invalid Order Data");
+    }
   }
 });
 
@@ -87,6 +90,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   } = req.body;
 
   const order = await Order.findById(id);
+
   if (order) {
     order.paidAt = Date.now();
     order.isPaid = true;
@@ -95,11 +99,13 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
       update_time,
       email_address,
     };
+    const updatedOrder = await order.save();
+
+    res.status(200).json(updatedOrder);
+  } else {
+    res.status(404);
+    throw new Error("Order Not Found");
   }
-
-  const updatedOrder = await order.save();
-
-  res.status(200).json(updatedOrder);
 });
 
 //! @desc Update Order TO Delivered
@@ -107,8 +113,19 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 // @access Private/Admin
 
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  res.send(`Update order  State to Delivered By ${id}`);
+  const order = await Order.findById(req.params.id);
+
+  if (order) {
+    order.isDelivered = true;
+    order.deliveredAt = Date.now();
+
+    const updatedOrder = await order.save();
+
+    res.json(updatedOrder);
+  } else {
+    res.status(404);
+    throw new Error("Order not found");
+  }
 });
 
 //! @desc Get All Orders
@@ -116,7 +133,7 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
 // @access Private/Admin
 
 const getOrders = asyncHandler(async (req, res) => {
-  const orders = await Order.find({}).populate('user', 'id name');
+  const orders = await Order.find({}).populate("user", "id name");
   res.json(orders);
 });
 

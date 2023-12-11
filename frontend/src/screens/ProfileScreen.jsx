@@ -6,7 +6,8 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Form, Image, Button, Row, Col } from "react-bootstrap";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import BootstrapTable from "react-bootstrap-table-next";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaTruckMoving } from "react-icons/fa";
+import { TbTruckDelivery } from "react-icons/tb";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { toast } from "react-toastify";
@@ -78,7 +79,19 @@ const ProfileScreen = () => {
           <FaTimes style={{ color: "red", textAlign: "center" }}></FaTimes>
         ),
     },
-    { dataField: "isDelivered", text: "DELIVERED" },
+    {
+      dataField: "isDelivered",
+      text: "DELIVERED",
+      formatter: (cell, row) =>
+        row.isDelivered ? (
+          row.deliveredAt?.substring(0, 10)
+        ) : (
+          <TbTruckDelivery
+            style={{ color: "red", textAlign: "center" }}
+            size={25}
+          ></TbTruckDelivery>
+        ),
+    },
     {
       dataField: "details",
       text: "INFO",
@@ -99,12 +112,12 @@ const ProfileScreen = () => {
     },
   ];
   return (
+    <div className="profile cb">
+    <div className="container pt-4">
     <Row>
       <Col md={3}>
-        <h2>User Profile</h2>
-
-        <Image src="/favicon.png" roundedCircle width={"50px"} />
-
+        <Image className="center-item img-profile" src="/favicon.png" roundedCircle width={"50px"} />
+        <h3 className="text-center">{userInfo?.name}</h3>
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="email" className="my-2">
             <Form.Label>Name</Form.Label>
@@ -160,8 +173,9 @@ const ProfileScreen = () => {
         {isLoadingMyOrders ? (
           <Loader></Loader>
         ) : error ? (
-          <Message variant={"danger"}>
-            {error?.data?.message || error.error}
+          <Message variant={"danger"} className={"text-center"}>
+            "We're sorry, but we encountered an issue while processing your
+            request."
           </Message>
         ) : (
           <BootstrapTable
@@ -174,6 +188,8 @@ const ProfileScreen = () => {
         )}
       </Col>
     </Row>
+    </div>
+    </div>
   );
 };
 

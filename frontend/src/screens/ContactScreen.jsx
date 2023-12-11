@@ -75,7 +75,7 @@ const ContactScreen = () => {
                   ></textarea>
                 </div>
                 <button type="submit" className="btn-contact btn btn-primary">
-                  Envoyer
+                  Send
                 </button>
               </form>
             </div>

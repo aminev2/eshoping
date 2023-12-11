@@ -9,16 +9,16 @@ import {
   updateOrderToPaid,
   getOrderCountByDay,
 } from "../controllers/orderController.js";
-  
+
 const router = Router();
 
 router.get("/count-by-day", getOrderCountByDay);
 
-router.route("/").post(protect, addOrderItems).get( protect, admin,  getOrders);
+router.route("/").post(protect, addOrderItems).get(protect, admin, getOrders);
 
 router.route("/mine").get(protect, getMyOrders);
 
-router.route("/:id").get(protect, admin, getOrderById);
+router.route("/:id([0-9a-fA-F]{24})").get(protect, admin, getOrderById);
 
 router.route("/:id/pay").put(protect, updateOrderToPaid);
 

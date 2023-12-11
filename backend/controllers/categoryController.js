@@ -1,10 +1,5 @@
-import  Category  from "../models/categoryModel.js";
+import Category from "../models/categoryModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
-
-
-//!@desc Add  a new category
-//?@route POST /api/categories/
-//?@access Public
 
 export const addCategory = asyncHandler(async (req, res) => {
   try {
@@ -28,8 +23,7 @@ export const addCategory = asyncHandler(async (req, res) => {
   }
 });
 
-
-//!@desc Get All categories
+//!@desc Get All category
 //?@route GET /api/categories/
 //?@access Private/Admin
 
@@ -44,7 +38,6 @@ export const getAllCategories = asyncHandler(async (req, res) => {
       .json({ message: "Internal Server Error", error: error.message });
   }
 });
-
 
 //!@desc Get category By ID
 //?@route GET /api/categories/:id
@@ -65,21 +58,21 @@ export const getCategoryById = asyncHandler(async (req, res) => {
   }
 });
 
-
 //!@desc Update a category
 //?@route PUT /api/categories/:id
 //?@access Private/Admin
 
 export const updateCategory = asyncHandler(async (req, res) => {
   const category = await Category.findById(req.params.id);
-  
+
   if (category) {
     const newCategoryName = req.body.name;
+
     const existingCategory = await Category.findOne({ name: newCategoryName });
 
     if (existingCategory) {
       res.status(400);
-      throw new Error('Category with this name already exists');
+      throw new Error("Category with this name already exists");
     }
 
     category.name = newCategoryName || category.name;
@@ -92,21 +85,20 @@ export const updateCategory = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error('Category not found');
+    throw new Error("Category not found");
   }
 });
-
 
 //!@desc Delete category
 //?@route DELETE /api/categories/:id
 //?@access Private/Admin
 
 export const deleteCategory = asyncHandler(async (req, res) => {
-    const category = await Category.findById(req.params.id);
-if (category) {
-    await Category.deleteOne({_id: category.id});
-    res.json({ message: 'Category removed' });
-}else{
-    throw new Error('Category not found');
-}
-})
+  const category = await Category.findById(req.params.id);
+  if (category) {
+    await Category.deleteOne({ _id: category.id });
+    res.json({ message: `${category.name} Category  removed` });
+  } else {
+    throw new Error("Category not found");
+  }
+});

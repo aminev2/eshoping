@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Nav, Container, Badge, NavDropdown } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Container,
+  Badge,
+  NavDropdown,
+  Form,
+  Button,
+} from "react-bootstrap";
 import { FaCartShopping, FaUser } from "react-icons/fa6";
 import { LinkContainer } from "react-router-bootstrap"; //need it
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import logo from "../assets/logo_ishop.png";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCart } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { selectAuth, logout } from "../slices/authSlice";
 import { useLogoutMutation } from "../slices/usersApiSlice";
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import NavBarCategories from "./NavBarCategories";
+import { useLocation } from "react-router-dom";
+import { BiSearchAlt } from "react-icons/bi";
 
 const Header = () => {
   const { cartItems } = useSelector(selectCart);
   const { userInfo } = useSelector(selectAuth);
+  const [search, setSearch] = useState();
+  const location = useLocation();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [logoutApiCall] = useLogoutMutation();
@@ -30,21 +40,24 @@ const Header = () => {
     }
   };
 
+  const location = useLocation();
+
   return (
     <header>
-      <Navbar className="top-nav" bg="dark" variant="dark" expand="md" fixed="">
+      <Navbar className={`top-nav ${location.pathname === '/' ? 'navbar-home' : ''}`} bg="dark" variant="dark" expand="md" fixed="">
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="logo" width={100} />
+              <img
+                src={`${process.env.PUBLIC_URL}/logo.png`}
+                alt="logo"
+                width={80}
+              />
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-n av">
             <Nav className="me-auto">
-              <LinkContainer to="/">
-                <Nav.Link>Home</Nav.Link>
-              </LinkContainer>
               <LinkContainer to="/products">
                 <Nav.Link>Shop</Nav.Link>
               </LinkContainer>
@@ -55,8 +68,34 @@ const Header = () => {
                 <Nav.Link>About</Nav.Link>
               </LinkContainer>
             </Nav>
+            {location.pathname !== "/products" && (
+              <div className="d-flex m-auto">
+                <Form.Control
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                  defaultValue={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <Button
+                  variant="outline-success"
+                  onClick={() =>
+                    navigate("/products", {
+                      state: { search },
+                    })
+                  }
+                >
+                  <BiSearchAlt></BiSearchAlt>
+                </Button>
+              </div>
+            )}
             <Nav className="ms-auto">
-              <LinkContainer className="cart1" to="/cart" style={{ position: "relative" }}>
+              <LinkContainer
+                className="cart1"
+                to="/cart"
+                style={{ position: "relative" }}
+              >
                 <Nav.Link>
                   {cartItems.length > 0 && (
                     <Badge
@@ -68,7 +107,7 @@ const Header = () => {
                         borderRadius: "100%",
                         top: "5px",
                         left: "-4px",
-                        backgroundColor: "#fe4749"
+                        backgroundColor: "#fe4749",
                       }}
                     >
                       {cartItems.reduce(
@@ -113,103 +152,37 @@ const Header = () => {
               <Dropdown.Item>Login</Dropdown.Item>
             </LinkContainer>
           </DropdownButton> */}
-         <LinkContainer className="cart2" to="/cart" style={{ position: "relative" }}>
-          <Nav.Link>
-                  {cartItems.length > 0 && (
-                    <Badge
-                      pill
-                      bg=""
-                      style={{
-                        position: "absolute",
-                        padding: "2px 5px",
-                        borderRadius: "100%",
-                        top: "-5px",
-                        left: "-12px",
-                        backgroundColor: "#fe4749"
-                      }}
-                    >
-                      {cartItems.reduce(
-                        (a, c) => (a + c.qty < 99 ? a + c.qty : "99+"),
-                        0
-                      )}
-                    </Badge>
+          <LinkContainer
+            className="cart2"
+            to="/cart"
+            style={{ position: "relative" }}
+          >
+            <Nav.Link>
+              {cartItems.length > 0 && (
+                <Badge
+                  pill
+                  bg=""
+                  style={{
+                    position: "absolute",
+                    padding: "2px 5px",
+                    borderRadius: "100%",
+                    top: "-5px",
+                    left: "-12px",
+                    backgroundColor: "#fe4749",
+                  }}
+                >
+                  {cartItems.reduce(
+                    (a, c) => (a + c.qty < 99 ? a + c.qty : "99+"),
+                    0
                   )}
-                  <FaCartShopping className="mx-2"></FaCartShopping>
-                  Cart
-                </Nav.Link>
-                </LinkContainer>
-               
+                </Badge>
+              )}
+              <FaCartShopping className="mx-2"></FaCartShopping>
+              Cart
+            </Nav.Link>
+          </LinkContainer>
         </Container>
-
       </Navbar>
-      <div className="nav-menu">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <ul class="navbar-nav navbar-menu">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle nav-menu-link" href="#" id="womenDropdown" role="button" data-toggle="dropdown">
-          Men
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="/women/item1">Item 1</a>
-          <a class="dropdown-item" href="/women/item2">Item 2</a>
-          <a class="dropdown-item" href="/women/item3">Item 3</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle nav-menu-link" href="#" id="womenDropdown" role="button" data-toggle="dropdown">
-          Women
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="/women/item1">Item 1</a>
-          <a class="dropdown-item" href="/women/item2">Item 2</a>
-          <a class="dropdown-item" href="/women/item3">Item 3</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle nav-menu-link" href="#" id="womenDropdown" role="button" data-toggle="dropdown">
-        Packs & bags
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="/women/item1">Item 1</a>
-          <a class="dropdown-item" href="/women/item2">Item 2</a>
-          <a class="dropdown-item" href="/women/item3">Item 3</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle nav-menu-link" href="#" id="womenDropdown" role="button" data-toggle="dropdown">
-        Tents
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="/women/item1">Item 1</a>
-          <a class="dropdown-item" href="/women/item2">Item 2</a>
-          <a class="dropdown-item" href="/women/item3">Item 3</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle nav-menu-link" href="#" id="womenDropdown" role="button" data-toggle="dropdown">
-        Equipment
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="/women/item1">Item 1</a>
-          <a class="dropdown-item" href="/women/item2">Item 2</a>
-          <a class="dropdown-item" href="/women/item3">Item 3</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle nav-menu-link" href="#" id="womenDropdown" role="button" data-toggle="dropdown">
-        Accessories
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="/women/item1">Item 1</a>
-          <a class="dropdown-item" href="/women/item2">Item 2</a>
-          <a class="dropdown-item" href="/women/item3">Item 3</a>
-        </div>
-      </li>
-      
-    </ul>
-
-</nav>
-      </div>
     </header>
   );
 };
