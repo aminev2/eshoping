@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import bcrypt from "bcryptjs";
+
 const userSchema = new Schema(
   {
     name: {
@@ -20,6 +21,10 @@ const userSchema = new Schema(
       default: false  ,
       required: true, 
     },
+    status: {
+      type: Boolean,
+      default: "true",
+    }
   },
   { timestamps: true }
 );

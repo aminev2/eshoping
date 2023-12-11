@@ -19,4 +19,4 @@ const categorySchema = new Schema(
 
 // Create and export the Category model
 const Category = model("Category", categorySchema);
-export { Category };
+export default Category ;

@@ -127,65 +127,14 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 const getUsers = asyncHandler(async (req, res) => {
   const users = await User.find({ isAdmin: true });
   const customers = await User.find({ isAdmin: false });
-  res
-    .status(200)
-    .send({
-      customers,
-      customersCount: customers.length,
-      usersCount: users.length,
-      users,  
-    });
+  res.status(200).send({
+    customers,
+    customersCount: customers.length,
+    usersCount: users.length,
+    users,
+  });
 });
 
-
-//! @desc Get user count by day
-// @route GET /api/products/count-by-day
-// @access Private/Admin
-const getUserCountByDay = asyncHandler(async (req, res) => {
-  const userCountByDay = await User.aggregate([
-    { $match: { isAdmin: true }},
-    { $group: {
-        _id: {
-          day: { $dayOfYear: "$createdAt" },
-          year: { $year: "$createdAt" }
-        },
-        count: { $sum: 1 }
-      }
-    }
-  ]);
-
-  if (!userCountByDay) {
-    res.status(404);
-    throw new Error("No data found");
-  }
-
-  return res.status(200).json(userCountByDay);
-});
-
-
-//! @desc Get customer count by day
-// @route GET /api/products/count-by-day
-// @access Private/Admin
-const getCustomerCountByDay = asyncHandler(async (req, res) => {
-  const customerCountByDay = await User.aggregate([
-    { $match: { isAdmin: false }},
-    { $group: {
-        _id: {
-          day: { $dayOfYear: "$createdAt" },
-          year: { $year: "$createdAt" }
-        },
-        count: { $sum: 1 }
-      }
-    }
-  ]);
-
-  if (!customerCountByDay) {
-    res.status(404);
-    throw new Error("No data found");
-  }
-
-  return res.status(200).json(customerCountByDay);
-});
 
 
 //!@desc Get user By ID
@@ -193,10 +142,11 @@ const getCustomerCountByDay = asyncHandler(async (req, res) => {
 //?@access Private/Admin
 
 const getUserByID = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id).select("-password");
+  const { id } = req.params;
+  const user = await User.findById(id).select("-password");
 
   if (user) {
-    res.json(user);
+    res.status(200).json(user);
   } else {
     res.status(404);
     throw new Error("User not found");
@@ -241,6 +191,56 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
+//! @desc Get user count by day
+// @route GET /api/products/count-by-day
+// @access Private/Admin
+const getUserCountByDay = asyncHandler(async (req, res) => {
+  const userCountByDay = await User.aggregate([
+    { $match: { isAdmin: true } },
+    {
+      $group: {
+        _id: {
+          day: { $dayOfYear: "$createdAt" },
+          year: { $year: "$createdAt" },
+        },
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  if (!userCountByDay) {
+    res.status(404);
+    throw new Error("No data found");
+  }
+
+  return res.status(200).json(userCountByDay);
+});
+
+//! @desc Get customer count by day
+// @route GET /api/products/count-by-day
+// @access Private/Admin
+const getCustomerCountByDay = asyncHandler(async (req, res) => {
+  const customerCountByDay = await User.aggregate([
+    { $match: { isAdmin: false } },
+    {
+      $group: {
+        _id: {
+          day: { $dayOfYear: "$createdAt" },
+          year: { $year: "$createdAt" },
+        },
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  if (!customerCountByDay) {
+    res.status(404);
+    throw new Error("No data found");
+  }
+
+  return res.status(200).json(customerCountByDay);
+});
+
 export {
   registerUser,
   loginUser,
@@ -252,5 +252,5 @@ export {
   updateUser,
   deleteUser,
   getUserCountByDay,
-  getCustomerCountByDay
+  getCustomerCountByDay,
 };

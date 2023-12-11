@@ -1,4 +1,4 @@
-import { Category } from "../models/categoryModel.js";
+import  Category  from "../models/categoryModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
 
 
@@ -29,7 +29,7 @@ export const addCategory = asyncHandler(async (req, res) => {
 });
 
 
-//!@desc Get All categorys
+//!@desc Get All categories
 //?@route GET /api/categories/
 //?@access Private/Admin
 

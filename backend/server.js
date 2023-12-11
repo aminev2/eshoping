@@ -12,7 +12,6 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
-import visitRoutes from "./routes/visitRoutes.js"
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 
 // Import additional middleware for logging, parsing, and handling cookies
@@ -50,7 +49,6 @@ app.get("/api/config/paypal", (req, res) => {
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
-app.use("/api/visit", visitRoutes);
 app.use("/api/categories", categoryRoutes);
 
 
