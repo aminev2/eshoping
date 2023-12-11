@@ -182,6 +182,16 @@ a.cart2.active.nav-link {
   background-color: #fe4749 !important;
   color: white;
 }
+
+.rec.rec-arrow:hover:active {
+  background-color: #fe4749 !important;
+  color: white;
+}
+
+.rec.rec-arrow:hover:focus {
+  background-color: #fe4749 !important;
+  color: white;
+}
 .rec.rec-arrow:disabled {
   visibility: hidden;
 }

@@ -170,7 +170,7 @@ const ProductScreen = () => {
                   {product.reviews.map(
                     (review) =>
                       review.isAppropriate && (
-                        <ListGroup.Item key={review._id}>
+                        <ListGroup.Item key={review?._id}>
                           <strong>{review.name}</strong>
                           <Rating ratingValue={review.rating} addRate />
                           <p>{review.createdAt.substring(0, 10)}</p>

@@ -10,10 +10,13 @@ import {
   updateUser,
   deleteUser,
   resetUserPassword,
+  getCustomerCountByDay,
+  getUserCountByDay,
 } from "../controllers/userController.js";
 import { admin, protect } from "../middlewares/authMiddleware.js";
 import { rateLimit } from "express-rate-limit";
 const router = Router();
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   limit: 5, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
@@ -23,14 +26,23 @@ const limiter = rateLimit({
   message: "Too many requests, please try again after 15 min",
 });
 
+router.get("/customer-count-by-day", getCustomerCountByDay);
+
+router.get("/user-count-by-day", getUserCountByDay);
+
 router.route("/register").post(registerUser);
+
 router.route("/").get(getUsers);
+
 router.post("/login", limiter, loginUser);
+
 router.post("/logout", protect, logoutUser);
+
 router
   .route("/profile")
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile);
+
 router
   .route("/:id([0-9a-fA-F]{24})")
   .delete(protect, admin, deleteUser)

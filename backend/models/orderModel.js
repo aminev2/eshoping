@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import Product from "./productModel.js";
+
 const orderSchema = new Schema(
   {
     user: {
@@ -15,6 +15,7 @@ const orderSchema = new Schema(
         qty: { type: Number, required: true },
         image: { type: Array, required: true },
         price: { type: Number, required: true },
+        sizes: { type: Array },
         product: {
           type: Schema.Types.ObjectId,
           required: true,
@@ -47,6 +48,7 @@ const orderSchema = new Schema(
       required: true,
       default: 0.0,
     },
+
     taxPrice: {
       type: Number,
       required: true,
@@ -74,11 +76,13 @@ const orderSchema = new Schema(
     paidAt: {
       type: Date,
     },
+
     isDelivered: {
       type: Boolean,
       required: true,
       default: false,
     },
+
     deliveredAt: {
       type: Date,
     },
