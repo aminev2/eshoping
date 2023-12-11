@@ -19,8 +19,8 @@ router.get("/count-by-day", getProductCountByDay);
 
 router.get("/:id", getProductById);
 
-router.delete("/:id", /* protect, admin, */ deleteCategory);
+router.delete("/:id",  protect, admin,  deleteCategory);
 
-router.put("/:id", /* protect, admin, */ updateProduct);
+router.put("/:id",  protect, admin,  updateProduct);
 
 export default router;
