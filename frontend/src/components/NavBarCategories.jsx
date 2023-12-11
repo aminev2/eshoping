@@ -7,7 +7,7 @@ const NavBarCategories = ({ categories, products }) => {
   return (
     <>
       <div className="nav-menu">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="nav-categories navbar navbar-expand-lg navbar-light">
           <ul className="navbar-nav navbar-menu">
             {categories?.slice(0, 4).map((category) => {
               return (
@@ -21,14 +21,14 @@ const NavBarCategories = ({ categories, products }) => {
                   }
                 >
                   <Link
-                    className="nav-link dropdown-toggle nav-menu-link"
+                    className="li-cat nav-link dropdown-toggle nav-menu-link col-md-3"
                     id="womenDropdown"
                     role="button"
                     data-toggle="dropdown"
                   >
                     {category.name}
                   </Link>
-                  <div className="dropdown-menu">
+                  <div className="dropdown-menu cat-drop">
                     {products?.map((product) => {
                       return (
                         product.category === category._id && (

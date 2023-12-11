@@ -40,8 +40,6 @@ const Header = () => {
     }
   };
 
-  const location = useLocation();
-
   return (
     <header>
       <Navbar className={`top-nav ${location.pathname === '/' ? 'navbar-home' : ''}`} bg="dark" variant="dark" expand="md" fixed="">
@@ -69,16 +67,17 @@ const Header = () => {
               </LinkContainer>
             </Nav>
             {location.pathname !== "/products" && (
-              <div className="d-flex m-auto">
+              <div className="d-flex m-auto box-search">
                 <Form.Control
-                  type="search"
+                  type="text"
                   placeholder="Search"
-                  className="me-2"
+                  className="me-2 search-nav"
                   aria-label="Search"
                   defaultValue={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
                 <Button
+                  className="search-btn"
                   variant="outline-success"
                   onClick={() =>
                     navigate("/products", {
@@ -88,6 +87,7 @@ const Header = () => {
                 >
                   <BiSearchAlt></BiSearchAlt>
                 </Button>
+
               </div>
             )}
             <Nav className="ms-auto">

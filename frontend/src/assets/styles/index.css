@@ -1,4 +1,9 @@
 /*--------------- Main styles -----------------*/
+.main {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
 .custom-range-color {
   color: #fe4749 !important; /* Change the track color */
   --form-range-thumb-active-bg: #fe4749 !important;
@@ -102,6 +107,7 @@ fieldset:disabled .btn {
 .top-nav {
   padding: 5px 0;
   position: relative;
+  background: #000 !important;
 }
 
 .navbar .dropdown:hover .dropdown-menu {
@@ -124,6 +130,43 @@ a.cart2.active.nav-link {
   color: #fff;
 }
 
+.search-nav {
+  background: #ffffff;
+  border: none;
+  border-radius: 60px;
+  padding: 5px 15px;
+}
+
+.search-btn {
+  color: #555;
+  border: none;
+  position: absolute;
+  right: 0;
+}
+
+.box-search {
+  position: relative;
+}
+
+.search-btn {
+  color: #555;
+  border: none;
+  position: absolute;
+  right: 8px;
+  top: -2px;
+}
+
+.search-btn:hover {
+ background: none;
+ color: #555;
+}
+
+.btn-outline-success {
+  --bs-btn-active-bg: none;
+}
+
+
+
 /*--------------- Navigation menu -----------------*/
 .nav-menu-link::after {
   display: none;
@@ -140,7 +183,29 @@ a.cart2.active.nav-link {
 
 .navbar-menu li a {
   font-weight: 600;
+  color: #000;
 }
+
+.nav-menu {
+  position: relative;
+  z-index: 30;
+  background: #e1e1e14f;
+  backdrop-filter: blur(5px);
+}
+
+.cat-drop {
+  background: #fff !important;
+  backdrop-filter: blur(5px);
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: #000000;
+}
+
+.li-cat {
+  color: #fff !important;
+}
+
 
 /*--------------- Carousel -----------------*/
 
@@ -472,7 +537,7 @@ th {
   position: absolute;
   width: 100%;
   object-fit: cover;
-  height: 450px;
+  height: 100%;
 }
 
 /* .content-video {
@@ -490,7 +555,7 @@ th {
 .content-video {
   z-index: 20;
   position: relative;
-  padding: 10% 1%;
+  padding: 12% 1%;
   background: #00000055;
   color: #fff;
 }
@@ -507,6 +572,12 @@ th {
 .content-video p {
   font-size: 1.2em;
 }
+
+.header-video {
+  margin-top: -56px;
+}
+
+
 
 /* .title-video {
   position: absolute;
@@ -693,6 +764,26 @@ th {
 .btn-season:hover {
   background: #fe4749;
   color: #fff;
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 990px) {
+
+  .header-video {
+    margin-top: 0px;
+}
+
+.nav-menu {
+    display: none;
+}
+
 }
 
 @media (max-width: 768px) {
