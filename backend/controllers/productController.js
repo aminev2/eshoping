@@ -110,6 +110,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 const updateProduct = asyncHandler(async (req, res) => {
   const productId = req.params.id;
   const { name, price, category, description } = req.body;
+  console.log('jgugu',name, price, category, description)
 
   const image = req.files ? req.files.map((file) => file.path) : null;
   console.log("req file ", req.file);
@@ -128,6 +129,8 @@ const updateProduct = asyncHandler(async (req, res) => {
     }
 
     const updatedProduct = await existingProduct.save();
+    console.log("updated product", updatedProduct);
+    console.log("existingProduct", existingProduct);
     res.status(200).json(updatedProduct);
   } else {
     res.status(404).json({ message: "Product not found" });
@@ -313,39 +316,37 @@ const getProductCountByDay = asyncHandler(async (req, res) => {
   return res.status(200).json(productCountByDay);
 });
 
-
-
 const getProductsCountByCategory = asyncHandler(async (req, res) => {
   const productsCountByCategory = await Product.aggregate([
     {
       $group: {
         _id: "$category",
-        count: { $sum: 1 }
-      }
+        count: { $sum: 1 },
+      },
     },
     {
       $lookup: {
         from: "categories", // name of the categories collection
         localField: "_id",
         foreignField: "_id",
-        as: "category"
-      }
+        as: "category",
+      },
     },
     {
-      $unwind: "$category"
+      $unwind: "$category",
     },
     {
       $project: {
         _id: 0,
         name: "$category.name",
-        count: 1
-      }
-    }
+        count: 1,
+      },
+    },
   ]);
 
   if (!productsCountByCategory) {
     res.status(404);
-    throw new Error('No data found');
+    throw new Error("No data found");
   }
 
   res.json(productsCountByCategory);

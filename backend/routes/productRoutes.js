@@ -8,6 +8,7 @@ import {
   getProductCountByDay,
   deleteProduct,
   getProductsCountByCategory,
+  updateProduct
 } from "../controllers/productController.js";
 import { upload } from "../utils/uploadImages.js";
 import { protect, admin } from "../middlewares/authMiddleware.js";
@@ -22,6 +23,8 @@ router
 router.get("/:id([0-9a-fA-F]{24})", getProductById);
 
 router.delete("/:id([0-9a-fA-F]{24})", deleteProduct);
+
+router.put("/:id([0-9a-fA-F]{24})",protect, admin, upload.array("image"), updateProduct);
 
 router.route("/filter").get(filterProducts);
 
