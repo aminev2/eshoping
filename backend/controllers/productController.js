@@ -313,6 +313,44 @@ const getProductCountByDay = asyncHandler(async (req, res) => {
   return res.status(200).json(productCountByDay);
 });
 
+
+
+const getProductsCountByCategory = asyncHandler(async (req, res) => {
+  const productsCountByCategory = await Product.aggregate([
+    {
+      $group: {
+        _id: "$category",
+        count: { $sum: 1 }
+      }
+    },
+    {
+      $lookup: {
+        from: "categories", // name of the categories collection
+        localField: "_id",
+        foreignField: "_id",
+        as: "category"
+      }
+    },
+    {
+      $unwind: "$category"
+    },
+    {
+      $project: {
+        _id: 0,
+        name: "$category.name",
+        count: 1
+      }
+    }
+  ]);
+
+  if (!productsCountByCategory) {
+    res.status(404);
+    throw new Error('No data found');
+  }
+
+  res.json(productsCountByCategory);
+});
+
 export {
   getProducts,
   getProductById,
@@ -322,4 +360,5 @@ export {
   getProductCountByDay,
   updateProduct,
   deleteProduct,
+  getProductsCountByCategory,
 };

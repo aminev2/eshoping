@@ -6,7 +6,8 @@ import {
   createProduct,
   filterProducts,
   getProductCountByDay,
-  deleteProduct
+  deleteProduct,
+  getProductsCountByCategory,
 } from "../controllers/productController.js";
 import { upload } from "../utils/uploadImages.js";
 import { protect, admin } from "../middlewares/authMiddleware.js";
@@ -25,5 +26,7 @@ router.delete("/:id([0-9a-fA-F]{24})", deleteProduct);
 router.route("/filter").get(filterProducts);
 
 router.route("/:id/reviews").post(protect, createProductReview);
+
+router.get("/products-count-by-category", getProductsCountByCategory);
 
 export default router;
