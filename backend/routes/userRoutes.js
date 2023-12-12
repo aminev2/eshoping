@@ -26,9 +26,9 @@ const limiter = rateLimit({
   message: "Too many requests, please try again after 15 min",
 });
 
-router.get("/customer-count-by-day", getCustomerCountByDay);
+router.get("/count-customer-by-day", getCustomerCountByDay);
 
-router.get("/user-count-by-day", getUserCountByDay);
+router.get("/count-user-by-day", getUserCountByDay);
 
 router.route("/register").post(registerUser);
 
