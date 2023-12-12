@@ -120,7 +120,7 @@ const HomeScreen = () => {
                 </Carousel>
 
                 <Col className="text-center">
-                  <Button onClick={() => navigate("/products")}>
+                  <Button className="btn-more" onClick={() => navigate("/products")}>
                     Show more
                   </Button>
                 </Col>
