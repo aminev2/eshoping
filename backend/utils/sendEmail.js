@@ -3,7 +3,7 @@ import { config } from "dotenv";
 config();
 const { HOST, SERVICE, EMAIL_PORT, SECURE, PASSWORD, USER_EMAIL } = process.env;
 
-export const sendEmail = async (email, subject, text, html) => {
+export const sendEmail = async (email, subject, text, html, name) => {
   try {
     const transporter = nodeMailer.createTransport({
       host: HOST,
@@ -18,7 +18,7 @@ export const sendEmail = async (email, subject, text, html) => {
 
     await transporter.sendMail({
       from: {
-        name: "AdvenShop",
+        name: name === null ? "AdvenShop" : name,
         address: String(USER_EMAIL),
       },
       to: email,

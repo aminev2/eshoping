@@ -1,4 +1,37 @@
+import React from "react";
+import { useContactUsMutation } from "../slices/usersApiSlice";
+import { toast } from "react-toastify";
+import Loader from "../components/Loader";
 const ContactScreen = () => {
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [subject, setSubject] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [message, setMessage] = React.useState("");
+
+  const [contactUs, { isLoading, error, data }] = useContactUsMutation();
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      const result = await contactUs({
+        name: firstName + " " + lastName,
+        subject,
+        email,
+        message,
+      });
+
+      if (result.error) {
+        toast.error(result.error.message);
+      } else {
+        toast.success("Message sent successfully");
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   return (
     <div className="contact">
       <header className="header-page header-contact">
@@ -33,13 +66,16 @@ const ContactScreen = () => {
           <div className="row">
             <div className="col-md-5">
               <h3>Send us message</h3>
-              <form className="row">
+              <form className="row" onSubmit={submitHandler}>
                 <div className="form-group col-md-6">
                   <input
                     type="text"
                     className="form-control"
                     id="first"
                     placeholder="First Name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="form-group col-md-6">
@@ -48,22 +84,31 @@ const ContactScreen = () => {
                     className="form-control"
                     id="last"
                     placeholder="Last Name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="form-group">
                   <input
                     type="text"
                     className="form-control"
-                    id="object"
-                    placeholder="Object"
+                    id="subject"
+                    placeholder="subject"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="form-group">
                   <input
-                    type="text"
+                    type="email"
                     className="form-control"
                     id="email"
                     placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -72,11 +117,19 @@ const ContactScreen = () => {
                     id="message"
                     rows="3"
                     placeholder="Message"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    required
                   ></textarea>
                 </div>
-                <button type="submit" className="btn-contact btn btn-primary">
+                <button
+                  type="submit"
+                  className="btn-contact btn btn-primary"
+                  disabled={isLoading}
+                >
                   Send
                 </button>
+                {isLoading && <Loader></Loader>}
               </form>
             </div>
             <div className="col-md-7">

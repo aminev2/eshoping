@@ -113,6 +113,7 @@ const resetUserPassword = asyncHandler(async (req, res) => {
     </ul>
     <p>Thank you for using our services! Happy Shopping </p>
 `,
+      null,
       null
     );
     res.status(200).send("Password reset successfully check your email");

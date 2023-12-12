@@ -1,6 +1,6 @@
 // Import the `apiSlice` and necessary constants from project files
 import { apiSlice } from "./apiSlice";
-import { USERS_URL } from "../constants";
+import { USERS_URL, CONTACT_US_URL } from "../constants";
 
 // Use `apiSlice` to create a `usersApiSlice` by injecting endpoints
 const usersApiSlice = apiSlice.injectEndpoints({
@@ -41,6 +41,14 @@ const usersApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+
+    contactUs: builder.mutation({
+      query: (data) => ({
+        url: CONTACT_US_URL,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -50,4 +58,5 @@ export const {
   useLogoutMutation,
   useRegisterMutation,
   useUpdateProfileMutation,
+  useContactUsMutation
 } = usersApiSlice;

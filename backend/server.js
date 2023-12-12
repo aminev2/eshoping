@@ -12,6 +12,7 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
+import { sendEmail } from "../backend/utils/sendEmail.js";
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 
 // Import additional middleware for logging, parsing, and handling cookies
@@ -34,14 +35,31 @@ app.use(urlencoded({ extended: true }));
 // Cookie Parser Middleware
 app.use(cookieParser());
 
-// API Routes
-app.get("/", (req, res) => {
-  res.status(200).send("API is running");
-});
-
 // PayPal API
 app.get("/api/config/paypal", (req, res) => {
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
+});
+
+app.post("/api/contact-us", async (req, res) => {
+  try {
+    const myEmail = "ismailelkhalil13@gmail.com";
+    const { name, email, subject, message } = req.body;
+
+    await sendEmail(
+      myEmail,
+      subject,
+      `
+        Mr: ${name}
+        Email: ${email}
+        Message:${message}
+      `,
+      null,
+      name
+    );
+    res.status(200).json({ message: "Email sent successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // Route handlers for products, users, and orders
