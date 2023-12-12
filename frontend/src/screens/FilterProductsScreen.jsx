@@ -15,6 +15,17 @@ import OffCanvasCartScreen from "./OffCanvasCartScreen";
 import { useLocation } from "react-router-dom";
 
 function FilterProductsScreen() {
+
+  const [isFilterOpen, setFilterOpen] = useState(false);
+
+  const handleFilterButtonClick = () => {
+    setFilterOpen(!isFilterOpen);
+  };
+
+  const handleCloseButtonClick = () => {
+    setFilterOpen(false);
+  };
+
   const location = useLocation();
   const {
     data: categories,
@@ -70,9 +81,9 @@ function FilterProductsScreen() {
     <div className="page-all-products">
       <div className="container">
         <Row>
-          <Col md={3}>
-            <div className="side-filter">
-              <h5>Search</h5>
+          <Col lg={3}>
+            <div className={`side-filter ${isFilterOpen ? 'open' : ''}`}>
+            <span className="close-btn" onClick={handleCloseButtonClick}><i class="bi bi-x-circle"></i></span>
               <ListGroup>
                 <Form.Control
                   type="search"
@@ -275,8 +286,10 @@ function FilterProductsScreen() {
               </ListGroup>
             </div>
           </Col>
+         
 
-          <Col md={9}>
+          <Col md={12} lg={9}>
+          <button className="btn-filter" onClick={handleFilterButtonClick}>Show Filter</button>
             <div className="show-products">
               <Row>
                 {isLoadingProducts ? (
@@ -297,7 +310,7 @@ function FilterProductsScreen() {
                       ) : (
                         products?.map((product) => {
                           return (
-                            <Col key={product._id} sm={12} md={6} lg={3}>
+                            <Col key={product._id} sm={12} md={6} lg={4}>
                               <Product className="product" product={product}>
                                 {
                                   <>

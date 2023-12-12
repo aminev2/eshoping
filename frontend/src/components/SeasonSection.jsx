@@ -7,17 +7,17 @@ const SeasonSection = () => {
         <div className="row box-seasons">
           <div className="col-md-6 col-lg-4">
             <div className="box-season box-season1">
-              <h3>WINTER</h3>
+              <h3>Gloves</h3>
             </div>
           </div>
           <div className="col-md-6 col-lg-4">
             <div className="box-season box-season2">
-              <h3>WINTER</h3>
+              <h3>Crampons</h3>
             </div>
           </div>
           <div className="col-md-6 col-lg-4">
             <div className="box-season box-season3">
-              <h3>WINTER</h3>
+              <h3>Category</h3>
             </div>
           </div>
         </div>
