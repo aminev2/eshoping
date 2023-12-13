@@ -9,7 +9,7 @@ const ChooseUs = () => {
         <div className="container">
           
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-6 col-lg-4">
               <div className="choose-item">
                 <i className="bi bi-diagram-3"></i>
                 <h4>Expertly Curated Selection</h4>
@@ -20,7 +20,7 @@ const ChooseUs = () => {
                 </p>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-6 col-lg-4">
               <div className="choose-item">
                 <i className="bi bi-tree"></i>
                 <h4>Passion for Adventure</h4>
@@ -31,7 +31,7 @@ const ChooseUs = () => {
                 </p>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-12 col-lg-4">
               <div className="choose-item">
                 <i className="bi bi-nut"></i>
                 <h4>Centric Approach</h4>

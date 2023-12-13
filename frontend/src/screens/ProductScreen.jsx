@@ -73,18 +73,19 @@ const ProductScreen = () => {
     }
   };
   return (
+    <div className="cb">
     <div className="container">
-      <Link className="btn btn-light my-3" to={-1}>
+      {/* <Link className="btn btn-light my-3" to={-1}>
         Go back
-      </Link>
+      </Link> */}
       {isLoading ? (
         <Loader></Loader>
       ) : error ? (
         <Message>{error?.data?.message || error.error}</Message>
       ) : (
         <>
-          <Row>
-            <Col md={5}>
+          <Row className="back-product">
+            <Col lg={5}>
               <Carousel
                 className="text-center "
                 indicators={false}
@@ -99,7 +100,7 @@ const ProductScreen = () => {
                 })}
               </Carousel>
             </Col>
-            <Col md={4}>
+            <Col className="bg-white pt-3 pb-4" md={12} lg={7}>
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h3>{product.name}</h3>
@@ -113,9 +114,8 @@ const ProductScreen = () => {
                 </ListGroup.Item>
                 <ListGroup.Item>{product.description}</ListGroup.Item>
               </ListGroup>
-            </Col>
-            <Col md={3}>
-              <Card>
+            
+              <Card className="order-product">
                 <ListGroup variant="flush">
                   <ListGroup.Item>
                     <Row>
@@ -129,7 +129,7 @@ const ProductScreen = () => {
                   {product?.countInStock >= 1 && (
                     <ListGroup.Item>
                       <Row className="text-center">
-                        <Col>Quantity:</Col>
+                        <Col className="qty-product">Quantity:</Col>
                         <Col className="text-center">
                           <Form.Label>
                             <strong>{qty}</strong>
@@ -162,9 +162,9 @@ const ProductScreen = () => {
           </Row>
           {/*REVIEW SECTION */}
           <Row className="review">
-            <Col md={6}>
+            <Col lg={6} >
               <h2>Reviews</h2>
-              {product.reviews.length === 0 && <Message>No Reviews</Message>}
+              {product.reviews.length === 0 && <Message variant={"light"}>No Reviews</Message>}
               <ListGroup variant="flush">
                 <div style={{ maxHeight: "200px", overflowY: "scroll" }}>
                   {product.reviews.map(
@@ -231,6 +231,7 @@ const ProductScreen = () => {
           </Row>
         </>
       )}
+    </div>
     </div>
   );
 };

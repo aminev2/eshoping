@@ -10,6 +10,6 @@ export const USERS_URL = "/api/users";
 
 export const ORDERS_URL = "/api/orders";
 
-export const CATEGORIES_URL = "/api/categories  ";
+export const CATEGORIES_URL = "/api/categories";
 
 export const PAYPAL_URL = "/api/config/paypal";

@@ -54,9 +54,9 @@ const CartScreen = () => {
       <div className="container">
         <Row>
           <Col md={8}>
-            <Button className="btn btn-light my-3" onClick={() => navigate(-1)}>
+            {/* <Button className="btn btn-light my-3" onClick={() => navigate(-1)}>
               Go back
-            </Button>
+            </Button> */}
             <h1 style={{ marginBottom: "20px" }}>Shopping Cart</h1>
             {cartItems.length === 0 ? (
               <Message>

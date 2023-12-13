@@ -64,7 +64,8 @@ const PlaceOrderScreen = () => {
     }
   };
   return (
-    <>
+    <div className="cb">
+    <div className="container">
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>
@@ -178,7 +179,8 @@ const PlaceOrderScreen = () => {
           </Card>
         </Col>
       </Row>
-    </>
+    </div>
+    </div>
   );
 };
 

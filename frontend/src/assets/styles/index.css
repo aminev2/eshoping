@@ -105,6 +105,10 @@ fieldset:disabled .btn {
   opacity: #a10000;
 }
 
+.bg-white {
+  background-color: #fff !important;
+}
+
 /*--------------- Main navbar -----------------*/
 .top-nav {
   padding: 5px 0;
@@ -292,9 +296,9 @@ a.cart2.active.nav-link {
 }
 
 .btn-more {
-  background: #000;
-  color: #fff;
-  border: solid 2px #000;
+  background: #fff;
+  color: #000000;
+  border: solid 2px #000000;
   border-radius: 50px;
   padding: 5px 20px;
 }
@@ -302,6 +306,10 @@ a.cart2.active.nav-link {
 /*--------------- Products -----------------*/
 .product {
   background: #f8f9f5;
+}
+
+.back-product {
+  background: #f8f9f4;
 }
 
 .rating span {
@@ -329,6 +337,18 @@ a.cart2.active.nav-link {
 .product a img {
   height: 165px;
   object-fit: contain;
+}
+
+.order-product {
+  max-width: 360px;
+  margin: 0 auto;
+  margin-top: 1px;
+  margin-top: 15px;
+}
+
+.qty-product {
+  display: flex;
+  align-items: center;
 }
 
 /*--------------- Categories -----------------*/
@@ -369,7 +389,7 @@ section.categories {
 }
 
 .cat-overlay:hover {
-  background: rgba(254, 71, 74, 0.575);
+  background: rgb(254 71 74 / 22%);
 }
 
 .cat-1 {
@@ -562,6 +582,7 @@ th {
   position: relative;
   width: 100%;
   overflow: hidden;
+  height: 100vh;
 }
 
 .background-video {
@@ -569,6 +590,16 @@ th {
   width: 100%;
   object-fit: cover;
   height: 100%;
+}
+
+.btn-video {
+  background: #fff0;
+  color: #fff;
+  border: solid 2px #fff;
+  border-radius: 50px;
+  padding: 5px 20px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 /* .content-video {
@@ -589,6 +620,7 @@ th {
   padding: 12% 1%;
   background: #00000055;
   color: #fff;
+  height: 100%;
 }
 
 .btn-header {
@@ -606,6 +638,13 @@ th {
 
 .header-video {
   margin-top: -56px;
+}
+
+.content-video {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -751,30 +790,36 @@ th {
 }
 
 .box-season1 {
-  background: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1702343683/GettyImages-549525757_1_k8oz6d.png);
+  background: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1702399957/11_ag1rks.jpg);
 }
 
 .box-season2 {
-  background: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1702343660/13-kaiserwinkl-schneeschuhwandern-by-eliasjerusalem_pzfaa3.jpg);
+  background: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1702403288/2_gcfvuw.jpg);
 }
 
 .box-season3 {
-  background: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1702343660/csm_Schneeschuhwandern_obertauern5_721126ceaf_stjscx.jpg);
+  background: url(https://res.cloudinary.com/doye6tvxz/image/upload/v1702403288/123456_v3dish.jpg);
 }
 
 .box-season h3 {
-  background: #ffffff00;
+  background: #0000003d;
   padding: 10px 0;
+  -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   text-align: center;
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .box-season {
   background-size: cover;
   color: #fff;
-  border: solid 5px #fff;
-  padding: 22% 0;
+  border: solid 5px #f3f3f3;
+  padding-top: 70%;
   position: relative;
+  display: flex;
+  align-items: end;
+  justify-content: center;
 }
 
 .box-season h2 {
