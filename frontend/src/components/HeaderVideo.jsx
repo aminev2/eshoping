@@ -16,10 +16,10 @@ const HeaderVideo = () => {
           <h1 className="text-center">Welcome to Advenshop</h1>
 
           <p className="text-center">
-            Find the best outdoor gear for your next adventure
+          Gear Up for the Adventure of a Lifetime
           </p>
 
-          <Button onClick={() => navigate("/products")}>Shop Now</Button>
+          <Button className="btn-video" onClick={() => navigate("/products")}>Shop Now</Button>
         </div>
       </div>
     </div>

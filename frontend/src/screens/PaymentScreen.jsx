@@ -27,6 +27,7 @@ const PaymentScreen = () => {
   };
 
   return (
+    <div className="payment cb">
     <FormContainer>
       <CheckoutSteps step1 step2 step3 />
       <h1>Payment Method</h1>
@@ -53,6 +54,7 @@ const PaymentScreen = () => {
         </Button>
       </Form>
     </FormContainer>
+    </div>
   );
 };
 

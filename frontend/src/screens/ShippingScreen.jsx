@@ -29,6 +29,7 @@ const ShippingScreen = () => {
     navigate("/payment");
   };
   return (
+    <div className="shipping cb">
     <FormContainer>
       <CheckoutSteps step1 step2></CheckoutSteps>
       <h1>Shipping</h1>
@@ -82,6 +83,7 @@ const ShippingScreen = () => {
         </Button>
       </Form>
     </FormContainer>
+    </div>
   );
 };
 

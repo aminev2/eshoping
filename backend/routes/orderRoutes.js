@@ -14,7 +14,7 @@ const router = Router();
 
 router.get("/count-by-day", getOrderCountByDay);
 
-router.route("/").post(protect, addOrderItems).get(protect, admin, getOrders);
+router.route("/").post(protect,addOrderItems).get(protect, admin, getOrders);
 
 router.route("/mine").get(protect, getMyOrders);
 
